@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="SWGOH">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Content goes here">
+  <title>SWGOH Territory Wars</title>
+
+  <!-- Google Font - Open Sans -->
+  <link async rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" />
+
+  <!-- Bootstrap CDN 3.3.7 -->
+  <link async rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="./css/styles.css">
+
+  <!-- Angular CDN 1.5.7 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+
+  <!-- Angular UI Router CDN 0.4.2 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+
+</head>
+<body>
+
+  <div ui-view></div>
+
+  <!-- Modules -->
+
+  <script type="text/javascript" src="./app.js"></script>
+
+  <!-- Services -->
+  <script type="text/javascript" src="./services/homeService.js"></script>
+  <script type="text/javascript" src="./services/collectionService.js"></script>
+  <script type="text/javascript" src="./services/teamService.js"></script>
+
+  <!-- Controllers -->
+  <script type="text/javascript" src="./controllers/homeController.js"></script>
+  <script type="text/javascript" src="./controllers/characterController.js"></script>
+  <script type="text/javascript" src="./controllers/shipController.js"></script>
+  <script type="text/javascript" src="./controllers/teamController.js"></script>
+
+</body>
+</html>
