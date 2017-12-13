@@ -14,6 +14,39 @@ app.controller("characterController", function($scope, $state, $stateParams, hom
   $scope.defense3 = []
   $scope.defense4 = []
 
+  $scope.offenseOneGP = function() {
+    var gp = 0;
+    console.log($scope.offense1);
+    for (var i = 0; i < $scope.offense1.length; i++) {
+      gp += $scope.offense1[i].galacticPower
+    }
+    return gp
+  }
+
+  $scope.offenseTwoGP = function() {
+    var gp = 0;
+    for (var i = 0; i < $scope.offense2.length; i++) {
+      gp += $scope.offense2[i].galacticPower
+    }
+    return gp
+  }
+
+  $scope.offenseThreeGP = function() {
+    var gp = 0;
+    for (var i = 0; i < $scope.offense3.length; i++) {
+      gp += $scope.offense3[i].galacticPower
+    }
+    return gp
+  }
+
+  $scope.offenseFourGP = function() {
+    var gp = 0;
+    for (var i = 0; i < $scope.offense4.length; i++) {
+      gp += $scope.offense4[i].galacticPower
+    }
+    return gp
+  }
+
   $scope.currentUser = homeService.getCurrentUser()
 
   collectionService.getCollection($scope.currentUser, function(collection) {
@@ -29,13 +62,11 @@ app.controller("characterController", function($scope, $state, $stateParams, hom
     if(event.target.dataset.ngRepeat.includes("collection")) {
       charIndex = $scope.collection.indexOf(data)
       dragStart = "collection"
-      console.log("DRAG START VALUE: ", dragStart);
     }
 
     if(event.target.dataset.ngRepeat.includes("offense1")) {
       charIndex = $scope.offense1.indexOf(data)
       dragStart = "offense1"
-      console.log(dragStart);
     }
 
     if(event.target.dataset.ngRepeat.includes("offense2")) {
@@ -72,8 +103,6 @@ app.controller("characterController", function($scope, $state, $stateParams, hom
       charIndex = $scope.defense4.indexOf(data)
       dragStart = "defense4"
     }
-    // console.log("ON DRAG START: ", event.target.dataset.ngRepeat.includes("collection"));
-    console.log("ON DRAG START", charIndex);
   }
 
   $scope.onDragEnd = function(event, data) {
@@ -93,10 +122,6 @@ app.controller("characterController", function($scope, $state, $stateParams, hom
   }
 
   $scope.dropAccept = function(event, data) {
-    console.log("DROP ACCEPT");
-    console.log("DROP ACCEPT EVENT: ", event);
-    console.log("DROP ACCEPT DATA: ", data);
-    console.log("DROP ACCEPT DROPZONE: ", event.target.dataset.dropzone);
 
     if(event.target.dataset.dropzone == "offense1") {
       if($scope.offense1.length == 5) {

@@ -11,7 +11,7 @@
           <div class="collection-char collection-char-light-side">
 
             <div class="player-char-portrait char-portrait-full char-portrait-full-gear-t{{item.gearLevel}}">
-              <img class="char-portrait-full-img" src="https:{{ item.imageSrc }}" />
+              <img class="char-portrait-full-img" src="http:{{ item.imageSrc }}" />
               <div class="char-portrait-full-gear"></div>
               <div class="star star1" data-ng-class="{ 'star-inactive' : item.star < 1 }"></div>
               <div class="star star2" data-ng-class="{ 'star-inactive' : item.star < 2 }"></div>
@@ -47,14 +47,14 @@
       <h2 class="text-center">Teams</h2>
 
       <!-- OFFENSIVE TEAM 1 -->
-      <h4 class="text-center">Offensive 1</h4>
+      <h4 class="text-center">Offensive 1 - GP: {{ offenseOneGP() }}</h4>
       <div class="drop-zone" data-dropZone="offense1" drop-container drop-accepts="dropAccept($event, $dragData)" on-drag-enter="onDragEnter($event, $dragData)" on-drag-over="onDragOver($event, $dragData)" on-drag-leave="onDragLeave($event, $dragData)" on-drop="onDrop($event, $dragData)">
 
         <div class="custom-5-col" data-ng-repeat="item in offense1" data-ng-show="item.type == 'character'" drag-container="true" drag-data="item" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
           <div class="collection-char collection-char-light-side">
 
             <div class="player-char-portrait char-portrait-full char-portrait-full-gear-t{{item.gearLevel}}">
-              <img class="char-portrait-full-img" src="https:{{ item.imageSrc }}" />
+              <img class="char-portrait-full-img" src="http:{{ item.imageSrc }}" />
               <div class="char-portrait-full-gear"></div>
               <div class="star star1" data-ng-class="{ 'star-inactive' : item.star < 1 }"></div>
               <div class="star star2" data-ng-class="{ 'star-inactive' : item.star < 2 }"></div>
@@ -86,14 +86,14 @@
       </div>
 
       <!-- OFFENSIVE TEAM 2 -->
-      <h4 class="text-center">Offensive 2</h4>
+      <h4 class="text-center">Offensive 2  - GP: {{ offenseTwoGP() }}</h4>
       <div class="drop-zone" data-dropZone="offense2" drop-container drop-accepts="dropAccept($event, $dragData)" on-drag-enter="onDragEnter($event, $dragData)" on-drag-over="onDragOver($event, $dragData)" on-drag-leave="onDragLeave($event, $dragData)" on-drop="onDrop($event, $dragData)">
 
         <div class="custom-5-col" data-ng-repeat="item in offense2" data-ng-show="item.type == 'character'" drag-container="true" drag-data="item" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
           <div class="collection-char collection-char-light-side">
 
             <div class="player-char-portrait char-portrait-full char-portrait-full-gear-t{{item.gearLevel}}">
-              <img class="char-portrait-full-img" src="https:{{ item.imageSrc }}" />
+              <img class="char-portrait-full-img" src="http:{{ item.imageSrc }}" />
               <div class="char-portrait-full-gear"></div>
               <div class="star star1" data-ng-class="{ 'star-inactive' : item.star < 1 }"></div>
               <div class="star star2" data-ng-class="{ 'star-inactive' : item.star < 2 }"></div>
@@ -124,14 +124,14 @@
       </div>
 
       <!-- OFFENSIVE TEAM 3 -->
-      <h4 class="text-center">Offensive 3</h4>
+      <h4 class="text-center">Offensive 3  - GP: {{ offenseThreeGP() }}</h4>
       <div class="drop-zone" data-dropZone="offense3" drop-container drop-accepts="dropAccept($event, $dragData)" on-drag-enter="onDragEnter($event, $dragData)" on-drag-over="onDragOver($event, $dragData)" on-drag-leave="onDragLeave($event, $dragData)" on-drop="onDrop($event, $dragData)">
 
         <div class="custom-5-col" data-ng-repeat="item in offense3" data-ng-show="item.type == 'character'" drag-container="true" drag-data="item" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
           <div class="collection-char collection-char-light-side">
 
             <div class="player-char-portrait char-portrait-full char-portrait-full-gear-t{{item.gearLevel}}">
-              <img class="char-portrait-full-img" src="https:{{ item.imageSrc }}" />
+              <img class="char-portrait-full-img" src="http:{{ item.imageSrc }}" />
               <div class="char-portrait-full-gear"></div>
               <div class="star star1" data-ng-class="{ 'star-inactive' : item.star < 1 }"></div>
               <div class="star star2" data-ng-class="{ 'star-inactive' : item.star < 2 }"></div>
@@ -162,14 +162,14 @@
       </div>
 
       <!-- OFFENSIVE TEAM 4 -->
-      <h4 class="text-center">Offensive 4</h4>
+      <h4 class="text-center">Offensive 4 - GP: {{ offenseFourGP() }}</h4>
       <div class="drop-zone" data-dropZone="offense4" drop-container drop-accepts="dropAccept($event, $dragData)" on-drag-enter="onDragEnter($event, $dragData)" on-drag-over="onDragOver($event, $dragData)" on-drag-leave="onDragLeave($event, $dragData)" on-drop="onDrop($event, $dragData)">
 
         <div class="custom-5-col" data-ng-repeat="item in offense4" data-ng-show="item.type == 'character'" drag-container="true" drag-data="item" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
           <div class="collection-char collection-char-light-side">
 
             <div class="player-char-portrait char-portrait-full char-portrait-full-gear-t{{item.gearLevel}}">
-              <img class="char-portrait-full-img" src="https:{{ item.imageSrc }}" />
+              <img class="char-portrait-full-img" src="http:{{ item.imageSrc }}" />
               <div class="char-portrait-full-gear"></div>
               <div class="star star1" data-ng-class="{ 'star-inactive' : item.star < 1 }"></div>
               <div class="star star2" data-ng-class="{ 'star-inactive' : item.star < 2 }"></div>
