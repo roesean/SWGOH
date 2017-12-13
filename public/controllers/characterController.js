@@ -14,6 +14,17 @@ app.controller("characterController", function($scope, $state, $stateParams, hom
   $scope.defense3 = []
   $scope.defense4 = []
 
+  $scope.currentUser = ""
+
+  $scope.header = false;
+
+  $scope.getCollection = function() {
+    $scope.header = true;
+    collectionService.getCollection($scope.currentUser, function(collection) {
+      $scope.collection = collection
+    })
+  }
+
   $scope.offenseOneGP = function() {
     var gp = 0;
     console.log($scope.offense1);
@@ -47,11 +58,37 @@ app.controller("characterController", function($scope, $state, $stateParams, hom
     return gp
   }
 
-  $scope.currentUser = homeService.getCurrentUser()
+  $scope.defenseOneGP = function() {
+    var gp = 0;
+    for (var i = 0; i < $scope.defense1.length; i++) {
+      gp += $scope.defense1[i].galacticPower
+    }
+    return gp
+  }
 
-  collectionService.getCollection($scope.currentUser, function(collection) {
-    $scope.collection = collection
-  })
+  $scope.defenseTwoGP = function() {
+    var gp = 0;
+    for (var i = 0; i < $scope.defense2.length; i++) {
+      gp += $scope.defense2[i].galacticPower
+    }
+    return gp
+  }
+
+  $scope.defenseThreeGP = function() {
+    var gp = 0;
+    for (var i = 0; i < $scope.defense3.length; i++) {
+      gp += $scope.defense3[i].galacticPower
+    }
+    return gp
+  }
+
+  $scope.defenseFourGP = function() {
+    var gp = 0;
+    for (var i = 0; i < $scope.defense4.length; i++) {
+      gp += $scope.defense4[i].galacticPower
+    }
+    return gp
+  }
 
   $scope.percent = function(min, max) {
     return Math.round((min / max) * 100)

@@ -4,7 +4,6 @@ app.service("homeService", function($state) {
 
   this.setCurrentUser = function(user) {
     currentUser = user.toLowerCase()
-    $state.go("characters")
   }
 
   this.getCurrentUser = function(user) {

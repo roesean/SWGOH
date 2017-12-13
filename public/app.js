@@ -5,13 +5,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise("/");
 
   $stateProvider
-    .state("home", {
-      url: "/",
-      templateUrl: "./views/home.html",
-      controller: "homeController"
-    })
     .state("characters", {
-      url: "/characters",
+      url: "/",
       templateUrl: "./views/characters.html",
       controller: "characterController"
     })
@@ -19,10 +14,5 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url: "/ships",
       templateUrl: "./views/ships.html",
       controller: "shipController"
-    })
-    .state("teams", {
-      url: "/teams",
-      templateUrl: "./views/teams.html",
-      controller: "teamController"
     })
 })

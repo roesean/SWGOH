@@ -1,6 +1,14 @@
 <div class="container">
+  <div class="row fetch-collection" data-ng-show="!header">
+    <div class="form-group">
+      <input type="text" class="form-control" data-ng-model="currentUser" placeholder="User Name..."/>
+    </div>
+
+    <button class="btn btn-primary center-block" data-ng-click="getCollection()">Get Collection</button>
+  </div>
+
   <div class="row">
-    <h1 class="text-center text-capitalize">{{ currentUser }}'s Characters</h1>
+    <h1 data-ng-show="header" class="text-center text-capitalize">{{ currentUser }}'s Characters</h1>
 
     <div class="col-md-6 collection-container">
       <h2 class="text-center">Characters</h2>
@@ -43,7 +51,7 @@
       </div>
     </div>
 
-    <div class="col-md-6">
+    <div class="col-md-6 team-container">
       <h2 class="text-center">Teams</h2>
 
       <!-- OFFENSIVE TEAM 1 -->
@@ -166,6 +174,158 @@
       <div class="drop-zone" data-dropZone="offense4" drop-container drop-accepts="dropAccept($event, $dragData)" on-drag-enter="onDragEnter($event, $dragData)" on-drag-over="onDragOver($event, $dragData)" on-drag-leave="onDragLeave($event, $dragData)" on-drop="onDrop($event, $dragData)">
 
         <div class="custom-5-col" data-ng-repeat="item in offense4" data-ng-show="item.type == 'character'" drag-container="true" drag-data="item" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
+          <div class="collection-char collection-char-light-side">
+
+            <div class="player-char-portrait char-portrait-full char-portrait-full-gear-t{{item.gearLevel}}">
+              <img class="char-portrait-full-img" src="http:{{ item.imageSrc }}" />
+              <div class="char-portrait-full-gear"></div>
+              <div class="star star1" data-ng-class="{ 'star-inactive' : item.star < 1 }"></div>
+              <div class="star star2" data-ng-class="{ 'star-inactive' : item.star < 2 }"></div>
+              <div class="star star3" data-ng-class="{ 'star-inactive' : item.star < 3 }"></div>
+              <div class="star star4" data-ng-class="{ 'star-inactive' : item.star < 4 }"></div>
+              <div class="star star5" data-ng-class="{ 'star-inactive' : item.star < 5 }"></div>
+              <div class="star star6" data-ng-class="{ 'star-inactive' : item.star < 6 }"></div>
+              <div class="star star7" data-ng-class="{ 'star-inactive' : item.star < 7 }"></div>
+              <div class="char-portrait-full-level">{{ item.level }}</div>
+              <div class="char-portrait-full-gear-level"></div>
+            </div>
+
+            <div class="collection-char-gp-progress">
+              <div class="collection-char-gp-progress-bar" style="width: {{ percent(item.galacticPower, item.maxGalacticPower) }}%;"></div>
+            </div>
+
+            <div class="collection-char-gp-label">
+              <span class="collection-char-gp-label-value">{{ percent(item.galacticPower, item.maxGalacticPower) }}</span>
+              <span class="collection-char-gp-label-percent">%</span>
+            </div>
+
+            <div class="collection-char-name">
+              <p class="collection-char-name-link"> {{ item.description }} </p>
+              <p class="collection-char-galactic-power-text"> GP: {{ item.galacticPower }} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEFENSIVE TEAM 1 -->
+      <h4 class="text-center">Defense 1 - GP: {{ defenseOneGP() }}</h4>
+      <div class="drop-zone" data-dropZone="defense1" drop-container drop-accepts="dropAccept($event, $dragData)" on-drag-enter="onDragEnter($event, $dragData)" on-drag-over="onDragOver($event, $dragData)" on-drag-leave="onDragLeave($event, $dragData)" on-drop="onDrop($event, $dragData)">
+
+        <div class="custom-5-col" data-ng-repeat="item in defense1" data-ng-show="item.type == 'character'" drag-container="true" drag-data="item" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
+          <div class="collection-char collection-char-light-side">
+
+            <div class="player-char-portrait char-portrait-full char-portrait-full-gear-t{{item.gearLevel}}">
+              <img class="char-portrait-full-img" src="http:{{ item.imageSrc }}" />
+              <div class="char-portrait-full-gear"></div>
+              <div class="star star1" data-ng-class="{ 'star-inactive' : item.star < 1 }"></div>
+              <div class="star star2" data-ng-class="{ 'star-inactive' : item.star < 2 }"></div>
+              <div class="star star3" data-ng-class="{ 'star-inactive' : item.star < 3 }"></div>
+              <div class="star star4" data-ng-class="{ 'star-inactive' : item.star < 4 }"></div>
+              <div class="star star5" data-ng-class="{ 'star-inactive' : item.star < 5 }"></div>
+              <div class="star star6" data-ng-class="{ 'star-inactive' : item.star < 6 }"></div>
+              <div class="star star7" data-ng-class="{ 'star-inactive' : item.star < 7 }"></div>
+              <div class="char-portrait-full-level">{{ item.level }}</div>
+              <div class="char-portrait-full-gear-level"></div>
+            </div>
+
+            <div class="collection-char-gp-progress">
+              <div class="collection-char-gp-progress-bar" style="width: {{ percent(item.galacticPower, item.maxGalacticPower) }}%;"></div>
+            </div>
+
+            <div class="collection-char-gp-label">
+              <span class="collection-char-gp-label-value">{{ percent(item.galacticPower, item.maxGalacticPower) }}</span>
+              <span class="collection-char-gp-label-percent">%</span>
+            </div>
+
+            <div class="collection-char-name">
+              <p class="collection-char-name-link"> {{ item.description }} </p>
+              <p class="collection-char-galactic-power-text"> GP: {{ item.galacticPower }} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEFENSIVE TEAM 2 -->
+      <h4 class="text-center">Defense 2 - GP: {{ defenseTwoGP() }}</h4>
+      <div class="drop-zone" data-dropZone="defense2" drop-container drop-accepts="dropAccept($event, $dragData)" on-drag-enter="onDragEnter($event, $dragData)" on-drag-over="onDragOver($event, $dragData)" on-drag-leave="onDragLeave($event, $dragData)" on-drop="onDrop($event, $dragData)">
+
+        <div class="custom-5-col" data-ng-repeat="item in defense2" data-ng-show="item.type == 'character'" drag-container="true" drag-data="item" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
+          <div class="collection-char collection-char-light-side">
+
+            <div class="player-char-portrait char-portrait-full char-portrait-full-gear-t{{item.gearLevel}}">
+              <img class="char-portrait-full-img" src="http:{{ item.imageSrc }}" />
+              <div class="char-portrait-full-gear"></div>
+              <div class="star star1" data-ng-class="{ 'star-inactive' : item.star < 1 }"></div>
+              <div class="star star2" data-ng-class="{ 'star-inactive' : item.star < 2 }"></div>
+              <div class="star star3" data-ng-class="{ 'star-inactive' : item.star < 3 }"></div>
+              <div class="star star4" data-ng-class="{ 'star-inactive' : item.star < 4 }"></div>
+              <div class="star star5" data-ng-class="{ 'star-inactive' : item.star < 5 }"></div>
+              <div class="star star6" data-ng-class="{ 'star-inactive' : item.star < 6 }"></div>
+              <div class="star star7" data-ng-class="{ 'star-inactive' : item.star < 7 }"></div>
+              <div class="char-portrait-full-level">{{ item.level }}</div>
+              <div class="char-portrait-full-gear-level"></div>
+            </div>
+
+            <div class="collection-char-gp-progress">
+              <div class="collection-char-gp-progress-bar" style="width: {{ percent(item.galacticPower, item.maxGalacticPower) }}%;"></div>
+            </div>
+
+            <div class="collection-char-gp-label">
+              <span class="collection-char-gp-label-value">{{ percent(item.galacticPower, item.maxGalacticPower) }}</span>
+              <span class="collection-char-gp-label-percent">%</span>
+            </div>
+
+            <div class="collection-char-name">
+              <p class="collection-char-name-link"> {{ item.description }} </p>
+              <p class="collection-char-galactic-power-text"> GP: {{ item.galacticPower }} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEFENSIVE TEAM 3 -->
+      <h4 class="text-center">Defense 3 - GP: {{ defenseThreeGP() }}</h4>
+      <div class="drop-zone" data-dropZone="defense3" drop-container drop-accepts="dropAccept($event, $dragData)" on-drag-enter="onDragEnter($event, $dragData)" on-drag-over="onDragOver($event, $dragData)" on-drag-leave="onDragLeave($event, $dragData)" on-drop="onDrop($event, $dragData)">
+
+        <div class="custom-5-col" data-ng-repeat="item in defense3" data-ng-show="item.type == 'character'" drag-container="true" drag-data="item" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
+          <div class="collection-char collection-char-light-side">
+
+            <div class="player-char-portrait char-portrait-full char-portrait-full-gear-t{{item.gearLevel}}">
+              <img class="char-portrait-full-img" src="http:{{ item.imageSrc }}" />
+              <div class="char-portrait-full-gear"></div>
+              <div class="star star1" data-ng-class="{ 'star-inactive' : item.star < 1 }"></div>
+              <div class="star star2" data-ng-class="{ 'star-inactive' : item.star < 2 }"></div>
+              <div class="star star3" data-ng-class="{ 'star-inactive' : item.star < 3 }"></div>
+              <div class="star star4" data-ng-class="{ 'star-inactive' : item.star < 4 }"></div>
+              <div class="star star5" data-ng-class="{ 'star-inactive' : item.star < 5 }"></div>
+              <div class="star star6" data-ng-class="{ 'star-inactive' : item.star < 6 }"></div>
+              <div class="star star7" data-ng-class="{ 'star-inactive' : item.star < 7 }"></div>
+              <div class="char-portrait-full-level">{{ item.level }}</div>
+              <div class="char-portrait-full-gear-level"></div>
+            </div>
+
+            <div class="collection-char-gp-progress">
+              <div class="collection-char-gp-progress-bar" style="width: {{ percent(item.galacticPower, item.maxGalacticPower) }}%;"></div>
+            </div>
+
+            <div class="collection-char-gp-label">
+              <span class="collection-char-gp-label-value">{{ percent(item.galacticPower, item.maxGalacticPower) }}</span>
+              <span class="collection-char-gp-label-percent">%</span>
+            </div>
+
+            <div class="collection-char-name">
+              <p class="collection-char-name-link"> {{ item.description }} </p>
+              <p class="collection-char-galactic-power-text"> GP: {{ item.galacticPower }} </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEFENSIVE TEAM 4 -->
+      <h4 class="text-center">Defense 4 - GP: {{ defenseFourGP() }}</h4>
+      <div class="drop-zone" data-dropZone="defense4" drop-container drop-accepts="dropAccept($event, $dragData)" on-drag-enter="onDragEnter($event, $dragData)" on-drag-over="onDragOver($event, $dragData)" on-drag-leave="onDragLeave($event, $dragData)" on-drop="onDrop($event, $dragData)">
+
+        <div class="custom-5-col" data-ng-repeat="item in defense4" data-ng-show="item.type == 'character'" drag-container="true" drag-data="item" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
           <div class="collection-char collection-char-light-side">
 
             <div class="player-char-portrait char-portrait-full char-portrait-full-gear-t{{item.gearLevel}}">

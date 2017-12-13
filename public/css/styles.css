@@ -4963,3 +4963,7 @@ a.media-body:hover {
   height: 900px;
   overflow: scroll;
 }
+
+.fetch-collection {
+  margin-top: 50px;
+}
