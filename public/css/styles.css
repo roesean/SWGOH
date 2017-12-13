@@ -10,179 +10,14 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-/*.character-card {
-  height: 170px;
-  margin-bottom: 15px;
+.custom-5-col {
+  width: 20%;
+  float: left;
 }
 
-.char-level {
-  position: absolute;
-  bottom: 80px;
-  left: 50%;
-  z-index: 4;
-  width: 30px;
-  padding: 0 5px;
-  -webkit-transform: translate(-50%);
-  transform: translate(-50%);
-  color: #fff;
-  font-weight: bold;
-  background-color: #264257;
-  border: 2px solid #fff;
-  text-align: center;
-  border-radius: 100%/130% 130% 15px 15px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-  text-shadow: -1px -1px 0 black, 2px -1px 0 black, 2px 2px 0 black, -1px 2px 0 black, 2px 3px 0 black, 1px 3px 0 black, 2px 3px 0 black;
+.container {
+  width: 92%;
 }
-
-.char-gear {
-  position: absolute;
-  width: 80px;
-  height: 80px;
-  z-index: 2;
-  top: 0;
-  left: 0;
-}
-
-.char-gear-level {
-  left: 80%;
-  bottom: 0;
-  font-size: 12px;
-  min-width: 26px;
-  padding: 0 6px 0 5px;
-  z-index: 2;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 0 8px 1px rgba(0, 0, 0, 0.5) inset;
-}
-
-.custom-text {
-  font-size: 12px;
-  padding-top: 10px;
-  font-weight: 600;
-  height: 36px;
-}
-
-.char-image {
-  background-position: center center;
-  background-size: contain;
-  background-repeat: no-repeat;
-  border-radius: 100%;
-  width: 80px;
-  height: 80px;
-  display: block;
-  margin: 0 auto;
-}
-
-.star {
-  position: absolute;
-  bottom: 50%;
-  left: 50%;
-  width: 15px;
-  height: 55px;
-  color: #000;
-  -webkit-transform-origin: center bottom;
-  transform-origin: center bottom;
-  background: center 0 transparent url('https://swgoh.gg/static/img/star.png') no-repeat;
-  background-size: 100%;
-}
-
-.star {
-  position: absolute;
-  bottom: 75%;
-  left: 50%;
-  width: 15px;
-  height: 55px;
-  color: #000;
-  -webkit-transform-origin: center bottom;
-  transform-origin: center bottom;
-  background: center 0 transparent url('https://swgoh.gg/static/img/star.png') no-repeat;
-  background-size: 100%;
-}
-
-.star-1 {
-  -webkit-transform: translateX(-50%) rotate(-60deg);
-  transform: translateX(-50%) rotate(-60deg);
-}
-
-.star-2 {
-  -webkit-transform: translateX(-50%) rotate(-40deg);
-  transform: translateX(-50%) rotate(-40deg);
-}
-
-.star-3 {
-  -webkit-transform: translateX(-50%) rotate(-20deg);
-  transform: translateX(-50%) rotate(-20deg);
-}
-
-.star-4 {
-  -webkit-transform: translateX(-50%) rotate(0deg);
-  transform: translateX(-50%) rotate(0deg);
-}
-
-.star-5 {
-  -webkit-transform: translateX(-50%) rotate(20deg);
-  transform: translateX(-50%) rotate(20deg);
-}
-
-.star-6 {
-  -webkit-transform: translateX(-50%) rotate(40deg);
-  transform: translateX(-50%) rotate(40deg);
-}
-
-.star-7 {
-  -webkit-transform: translateX(-50%) rotate(60deg);
-  transform: translateX(-50%) rotate(60deg);
-}
-
-.star-inactive {
-  background-image: url('https://swgoh.gg/static/img/star-inactive.png');
-}
-
-.gear-12 {
-  background: url('https://swgoh.gg/static/img/ui/gear-icon-g12.svg')
-}
-
-.gear-11 {
-  background: url('https://swgoh.gg/static/img/ui/gear-icon-g11.svg')
-}
-
-.gear-10 {
-  background: url('https://swgoh.gg/static/img/ui/gear-icon-g10.svg')
-}
-
-.gear-9 {
-  background: url('https://swgoh.gg/static/img/ui/gear-icon-g9.svg')
-}
-
-.gear-8 {
-  background: url('https://swgoh.gg/static/img/ui/gear-icon-g8.svg')
-}
-
-.gear-7 {
-  background: url('https://swgoh.gg/static/img/ui/gear-icon-g7.svg')
-}
-
-.gear-6 {
-  background: url('https://swgoh.gg/static/img/ui/gear-icon-g6.svg')
-}
-
-.gear-5 {
-  background: url('https://swgoh.gg/static/img/ui/gear-icon-g5.svg')
-}
-
-.gear-4 {
-  background: url('https://swgoh.gg/static/img/ui/gear-icon-g4.svg')
-}
-
-.gear-3 {
-  background: url('https://swgoh.gg/static/img/ui/gear-icon-g3.svg')
-}
-
-.gear-2 {
-  background: url('https://swgoh.gg/static/img/ui/gear-icon-g2.svg')
-}
-
-.gear-1 {
-  background: url('https://swgoh.gg/static/img/ui/gear-icon-g1.svg')
-}*/
 
 .mfp-bg {
   top: 0;
@@ -5115,4 +4950,16 @@ a.media-body:hover {
 
 .btn-show-mods {
   margin-right: 5px;
+}
+
+.drop-zone {
+  width: 100%;
+  height: 160px;
+  border: 1px solid black;
+  margin: 20px 0;
+}
+
+.collection-container, .team-container {
+  height: 900px;
+  overflow: scroll;
 }

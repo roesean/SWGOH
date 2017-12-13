@@ -1,4 +1,4 @@
-var app = angular.module("SWGOH", ['ui.router'])
+var app = angular.module("SWGOH", ['ui.router', 'filearts.dragDrop'])
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
