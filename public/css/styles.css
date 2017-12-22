@@ -19,6 +19,54 @@ body {
   width: 92%;
 }
 
+.teams-header {
+  display: block;
+  float: left;
+}
+
+.add-team-box {
+  display: block;
+  float: left;
+  margin: 24px 10px;
+  width: 80%;
+}
+
+.add-team-box input {
+  width: 86%;
+  padding: 8px 12px;
+  margin: -7px 0;
+  border: 1px solid black;
+  height: 42px;
+}
+
+.add-team-box button {
+  width: 14%;
+  margin-top: -7px;
+  height: 42px;
+  border: 0px solid transparent;
+  background: black;
+  color: white;
+}
+
+.add-team-box button:hover,
+.add-team-box button:focus,
+.add-team-box button:active {
+  background-color: #404040;
+  outline: none;
+}
+
+.add-team-box button:focus {
+  background: black;
+}
+
+.teams-header span {
+  font-size: 20px;
+  display: inline-block;
+  margin: -10px 3px;
+  color: #27a227;
+  cursor: pointer;
+}
+
 .mfp-bg {
   top: 0;
   left: 0;
