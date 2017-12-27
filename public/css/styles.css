@@ -48,14 +48,35 @@ body {
   color: white;
 }
 
+.update-team-box input {
+  width: 87%;
+  padding: 8px 12px;
+  margin: -7px 0;
+  border: 1px solid black;
+  height: 42px;
+}
+
+.update-team-box button {
+  width: 13%;
+  margin-left: -5px;
+  height: 42px;
+  border: 0px solid transparent;
+  background: black;
+  color: white;
+}
+
 .add-team-box button:hover,
 .add-team-box button:focus,
-.add-team-box button:active {
+.add-team-box button:active,
+.update-team-box button:hover,
+.update-team-box button:focus,
+.update-team-box button:active {
   background-color: #404040;
   outline: none;
 }
 
-.add-team-box button:focus {
+.add-team-box button:focus,
+.update-team-box button:focus {
   background: black;
 }
 
@@ -63,9 +84,22 @@ body {
   font-size: 20px;
   display: inline-block;
   margin: -10px 3px;
-  color: #27a227;
   cursor: pointer;
 }
+
+.team-name:hover {
+  cursor: pointer;
+  color: #505050;
+}
+
+.trash {
+  font-size: 16px;
+  float: right;
+  margin-top: -26px;
+  cursor: pointer;
+}
+
+/* SWGOH */
 
 .mfp-bg {
   top: 0;

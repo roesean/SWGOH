@@ -4,7 +4,7 @@
       <input type="text" class="form-control" data-ng-model="currentUser" placeholder="User Name..."/>
     </div>
 
-    <button class="btn btn-primary center-block" data-ng-click="getCollection()">Get Collection</button>
+    <button class="btn btn-primary center-block" data-ng-click="getHeroCollection()">Get Heros</button>
   </div>
 
   <div class="row">
@@ -14,7 +14,7 @@
       <h2 class="text-center">Characters</h2>
       <div class="clearfix" data-dropZone="collection" drop-container on-drag-enter="onDragEnter($event, $dragData)" on-drag-over="onDragOver($event, $dragData)" on-drag-start="onDragStart($event, $dragData)" on-drag-leave="onDragLeave($event, $dragData)" on-drop="onDrop($event, $dragData)">
 
-        <div class="custom-5-col" data-ng-repeat="item in collection | orderBy: '-galacticPower' " data-ng-show="item.type == 'character'" drag-container="true" drag-data="item" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
+        <div class="custom-5-col" data-ng-repeat="item in collection | orderBy: '-galacticPower'" drag-container="true" drag-data="item" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
 
           <div class="collection-char collection-char-light-side">
 
@@ -53,7 +53,7 @@
 
     <div class="col-md-6 team-container">
       <div class="row">
-        <h2 class="teams-header">Teams <span class="glyphicon glyphicon-plus" ng-show="!showTeamInput" ng-click="showTeamInput = true"></span></h2>
+        <h2 class="teams-header">Teams <span class="s7-add-user" ng-show="!showTeamInput" ng-click="showTeamInput = true"></span></h2>
         <div class="add-team-box" ng-show="showTeamInput">
           <input type="text" class="col-md-10" ng-show="showTeamInput" ng-model="team.name" />
           <button ng-click="addTeam()">Add</button>
@@ -61,7 +61,16 @@
       </div>
 
       <div ng-repeat="t in teams">
-        <h4 class="text-center">{{ t.name }} - GP: {{ t.galacticPower() }}</h4>
+        <div data-ng-show="!t.updateName">
+          <h4 class="team-name text-center" ng-click="t.updateName = !t.updateName">{{ t.name }} - GP: {{ t.galacticPower() }}</h4>
+          <span class="s7-trash trash" data-ng-click="removeTeam(t)"></span>
+        </div>
+
+        <div class="update-team-box" data-ng-show="t.updateName">
+          <input type="text" data-ng-model="t.name">
+          <button ng-click="t.updateName = !t.updateName">Update</button>
+        </div>
+
         <div class="drop-zone"
         data-dropZone="{{ t.name }}"
         drop-container
@@ -71,7 +80,7 @@
         on-drag-leave="onDragLeave($event, $dragData)"
         on-drop="onDrop($event, $dragData)">
 
-          <div class="custom-5-col" data-ng-repeat="c in t.characters" data-ng-show="c.type == 'character'" drag-container="true" drag-data="c" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
+          <div class="custom-5-col" data-ng-repeat="c in t.characters" drag-container="true" drag-data="c" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
             <div class="collection-char collection-char-light-side">
 
               <div class="player-char-portrait char-portrait-full char-portrait-full-gear-t{{c.gearLevel}}">

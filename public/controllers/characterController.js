@@ -10,11 +10,18 @@ app.controller("characterController", function($scope, $state, $stateParams, hom
   $scope.showTeamInput = false;
 
   // Grabbing collection of user from npm package
-  $scope.getCollection = function() {
+  $scope.getHeroCollection = function() {
     $scope.header = true;
-    collectionService.getCollection($scope.currentUser, function(collection) {
-      $scope.collection = collection
-    })
+
+    collectionService.getHeroCollection($scope.currentUser)
+      .then(function(response) {
+        $scope.collection = response.data;
+        console.log(response.data);
+        console.log($scope.collection);
+      },
+      function(error) {
+        console.log(error);
+      })
   }
 
   // Initializing 4 teams to start
@@ -26,6 +33,18 @@ app.controller("characterController", function($scope, $state, $stateParams, hom
     collectionService.addTeam($scope.team)
     $scope.showTeamInput = false;
     $scope.team.name = "";
+  }
+
+  $scope.removeTeam = function(team) {
+    console.log(team)
+    var teamIndex = $scope.teams.indexOf(team);
+    for (var i = 0; i < team.characters.length; i++) {
+      $scope.collection.push(team.characters[i]);
+    }
+
+    $scope.teams.splice(teamIndex, 1)
+
+    console.log($scope.teams);
   }
 
   // Used to display Galactic Power as %

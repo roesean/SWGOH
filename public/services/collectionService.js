@@ -21,17 +21,12 @@ app.service("collectionService", function($http) {
   _teams.unshift(new Team(teamId++, "Team 2"));
   _teams.unshift(new Team(teamId++, "Team 1"));
 
-  this.getCollection = function(username, cb) {
-    $http.get("./collection/?username=" + username)
-      .then(function(response) {
-        console.log(response.data.results);
-        cb(response.data.results)
-      },
-      function(error) {
-        var _collection = []
-        cb(_collection)
-        console.log(error);
-      })
+  this.getHeroCollection = function(username) {
+    return $http.get("./hero/?username=" + username)
+  }
+
+  this.getShipCollection = function(username) {
+    return $http.get("./ship/?username=" + username)
   }
 
   this.getTeams = function() {

@@ -26,36 +26,6 @@ const swgoh = require("swgoh").swgoh
 // .then(console.log);
 //
 
-function getCollection(req, res) {
-  var usersCollection = []
-  var username = req.query.username
-  console.log("REQ QUERY: ", req.query);
-
-  swgoh.collection(username)
-    .then(function(response) {
-
-      for (var i = 0; i < response.length; i++) {
-        response[i].type = "character"
-        usersCollection.push(response[i]);
-      }
-      console.log("COLLECTION SWGOH RESPONSE COMPLETE ");
-    })
-
-  swgoh.ship(username)
-    .then(function(response) {
-      for (var i = 0; i < response.length; i++) {
-        response[i].type = "ship"
-        usersCollection.push(response[i]);
-      }
-      console.log("SHIP SWGOH RESPONSE COMPLETE ");
-    })
-
-  setTimeout(function() {
-    res.json({results: usersCollection})
-  }, 2000)
-
-}
-
 function getProfile(req, res) {
   var username = req.query.username
 
@@ -66,8 +36,31 @@ function getProfile(req, res) {
     })
 }
 
+function getHeroCollection(req, res) {
+  var username = req.query.username
+
+  swgoh.collection(username)
+  .then(function(response) {
+    console.log("COLLECTION SWGOH RESPONSE COMPLETE ");
+    console.log(response);
+    res.json(response)
+  })
+}
+
+function getShipCollection(req, res) {
+  var username = req.query.username
+
+  swgoh.ship(username)
+    .then(function(response) {
+      console.log("SHIP SWGOH RESPONSE COMPLETE ");
+      console.log(response);
+      res.json(response)
+    })
+}
+
 function getGuild(req, res) {
   var username = req.query.username
+
   swgoh.profile(username)
     .then(function (response) {
       console.log(response);
@@ -83,6 +76,7 @@ function getGuild(req, res) {
 
 module.exports = {
   getProfile: getProfile,
-  getCollection: getCollection,
+  getHeroCollection: getHeroCollection,
+  getShipCollection: getShipCollection,
   getGuild: getGuild
 }
