@@ -1,14 +1,20 @@
 <div class="container">
-  <div class="row fetch-collection" data-ng-show="!header">
-    <div class="form-group">
+  <div class="row fetch-collection-section" data-ng-show="!header">
+    <div class="col-md-12">
+      <h1 class="hero">Territory Wars <span>- organize your SWGOH characters</span></h1>
+      <p>Enter your <a href="https://swgoh.gg/">swgoh.gg</a> username to fetch your heros. If you don't have an account with them yet please go create one.</p>
+    </div>
+    <div class="form-group col-md-10">
       <input type="text" class="form-control" data-ng-model="currentUser" placeholder="User Name..."/>
     </div>
 
-    <button class="btn btn-primary center-block" data-ng-click="getHeroCollection()">Get Heros</button>
+    <div class="col-md-2">
+      <button class="btn btn-primary col-md-12" data-ng-click="getHeroCollection()">Get Heros</button>
+    </div>
   </div>
 
-  <div class="row">
-    <h1 data-ng-show="header" class="text-center text-capitalize">{{ currentUser }}'s Characters</h1>
+  <div class="row collection-section" data-ng-show="header">
+    <h1  class="text-center text-capitalize">{{ currentUser }}'s Characters</h1>
 
     <div class="col-md-6 collection-container">
       <h2 class="text-center">Characters</h2>

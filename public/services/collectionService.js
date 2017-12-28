@@ -16,10 +16,11 @@ app.service("collectionService", function($http) {
     }
   }
 
-  _teams.unshift(new Team(teamId++, "Team 4"));
-  _teams.unshift(new Team(teamId++, "Team 3"));
-  _teams.unshift(new Team(teamId++, "Team 2"));
-  _teams.unshift(new Team(teamId++, "Team 1"));
+  _teams.push(new Team(teamId++, "Meta"));
+  _teams.push(new Team(teamId++, "Sith"));
+  _teams.push(new Team(teamId++, "Resistance"));
+  _teams.push(new Team(teamId++, "Empire"));
+  _teams.push(new Team(teamId++, "Jedi"));
 
   this.getHeroCollection = function(username) {
     return $http.get("./hero/?username=" + username)
