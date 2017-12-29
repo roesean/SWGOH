@@ -1,18 +1,26 @@
-var app = angular.module("SWGOH", ['ui.router', 'filearts.dragDrop'])
+var app = angular.module("SWGOH", ['ui.router', 'filearts.dragDrop', "LocalStorageModule"])
 
 app.config(function($stateProvider, $urlRouterProvider) {
 
   $urlRouterProvider.otherwise("/");
 
   $stateProvider
-    .state("characters", {
+    .state('app', {
+			abstract: true,
+			url: '',
+			templateUrl: './views/app-container.html'
+		})
+
+    .state("app.home", {
       url: "/",
-      templateUrl: "./views/characters.html",
-      controller: "characterController"
+      templateUrl: "./views/home.html",
+      controller: "homeController"
     })
-    .state("ships", {
-      url: "/ships",
-      templateUrl: "./views/ships.html",
-      controller: "shipController"
+
+    .state("app.territoryWars", {
+      url: "/territory-wars",
+      templateUrl: "./views/territory-wars.html",
+      controller: "territoryWarsController"
     })
+
 })

@@ -1,9 +1,17 @@
-app.controller("homeController", function($scope, $state, $stateParams, homeService) {
+app.controller("homeController", function($scope, $state, $stateParams, userService) {
 
-  $scope.userName = ""
+  if(userService.getCurrentUser() == null) {
+    $scope.currentUser = "";
+    console.log($scope.currentUser);
+  }
+  else {
+    $scope.currentUser = userService.getCurrentUser();
+    console.log($scope.currentUser);
+  }
 
   $scope.setCurrentUser = function() {
-    homeService.setCurrentUser($scope.userName)
+    userService.setCurrentUser($scope.currentUser)
+    $state.go("app.territoryWars")
   }
-  
+
 })

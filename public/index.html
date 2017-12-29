@@ -27,22 +27,25 @@
 
   <div ui-view></div>
 
+  <!-- Libs -->
+  <script type="text/javascript" src="./libs/angular-drag-drop.js"></script>
+  <script type="text/javascript" src="./libs/angular-local-storage.min.js"></script>
+
   <!-- Modules -->
   <script type="text/javascript" src="./app.js"></script>
 
-  <!-- Libs -->
-  <script type="text/javascript" src="./libs/angular-drag-drop.js"></script>
+  <!-- Components -->
+  <script type="text/javascript" src="./components/navbar/navbar.js"></script>
+  <script type="text/javascript" src="./components/footer/footer.js"></script>
 
   <!-- Services -->
-  <script type="text/javascript" src="./services/homeService.js"></script>
+  <script type="text/javascript" src="./services/userService.js"></script>
   <script type="text/javascript" src="./services/collectionService.js"></script>
-  <script type="text/javascript" src="./services/teamService.js"></script>
 
   <!-- Controllers -->
   <script type="text/javascript" src="./controllers/homeController.js"></script>
-  <script type="text/javascript" src="./controllers/characterController.js"></script>
-  <script type="text/javascript" src="./controllers/shipController.js"></script>
-  <script type="text/javascript" src="./controllers/teamController.js"></script>
+  <script type="text/javascript" src="./controllers/navbarController.js"></script>
+  <script type="text/javascript" src="./controllers/territoryWarsController.js"></script>
 
 </body>
 </html>

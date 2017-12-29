@@ -31,53 +31,51 @@ body {
   width: 80%;
 }
 
-.add-team-box input {
-  width: 86%;
+.form-group input {
+  width: 85%;
+  height: 36px;
   padding: 8px 12px;
   margin: -7px 0;
   border: 1px solid black;
-  height: 42px;
+  border-radius: 0;
 }
 
-.add-team-box button {
-  width: 14%;
-  margin-top: -7px;
-  height: 42px;
-  border: 0px solid transparent;
-  background: black;
-  color: white;
-}
-
-.update-team-box input {
-  width: 87%;
-  padding: 8px 12px;
-  margin: -7px 0;
-  border: 1px solid black;
-  height: 42px;
-}
-
-.update-team-box button {
-  width: 13%;
+.form-group button {
+  width: 15%;
+  height: 36px;
+  margin-top: -4px;
   margin-left: -5px;
-  height: 42px;
   border: 0px solid transparent;
+  border-radius: 0;
   background: black;
   color: white;
 }
 
-.add-team-box button:hover,
-.add-team-box button:focus,
-.add-team-box button:active,
-.update-team-box button:hover,
-.update-team-box button:focus,
-.update-team-box button:active {
-  background-color: #404040;
+.form-group button:hover,
+.form-group button:focus,
+.form-group button:active,
+.form-group button:active:focus {
+  background-color: #333;
   outline: none;
+  color: white;
 }
 
-.add-team-box button:focus,
-.update-team-box button:focus {
-  background: black;
+.home-input-container {
+  width: 55%;
+  margin: 0 auto;
+}
+
+.teams-header-container {
+  width: 18%;
+  float: left;
+  height: 45px;
+}
+
+.teams-input-container {
+  width: 80%;
+  float: left;
+  height: 45px;
+  margin-top: 21px;
 }
 
 .teams-header span {
@@ -111,10 +109,6 @@ body {
   overflow: scroll;
 }
 
-.fetch-collection-section, .collection-section {
-  margin-top: 35px;
-}
-
 .hero span {
   font-size: 0.7em;
   font-weight: 400;
@@ -122,6 +116,52 @@ body {
 
 .hero {
   font-size: 3em;
+}
+
+.hero-text {
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.navbar-character-entry {
+  margin-top: 8px;
+  width: 40%;
+
+}
+
+.navbar-character-entry input {
+  width: 80% !important;
+  margin: 0;
+  border: 1px solid black;
+  border-radius: 0;
+}
+
+.navbar-character-entry input:focus {
+  outline: none;
+  border: 1px solid black;
+  box-shadow: none;
+}
+
+.navbar-character-entry button {
+  width: 19%;
+  margin: 0;
+  margin-left: -6px;
+  border: 0;
+  border-radius: 0;
+  height: 34px;
+  background: black;
+  color: white;
+}
+
+.navbar-default {
+  border-color: white;
+  background-color: #ececec;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #2e2e2e;
 }
 
 /* SWGOH */
@@ -701,20 +741,20 @@ h1.h1 {
 .navbar-brand {
   padding: 0 15px;
   width: 170px;
-  background: transparent url('https://swgoh.gg/static/img/swgohgg-nav.png') 15px no-repeat;
+  background: transparent url('../assets/swgoh-icon.png') 15px no-repeat;
 }
 
 .navbar-brand:hover {
-  background-image: url('https://swgoh.gg/static/img/swgohgg-nav-orange.png');
+  background-image: url('../assets/swgoh-icon.png')
 }
 
 @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-devicepixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
   .navbar-brand {
-    background: transparent url('https://swgoh.gg/static/img/swgohgg-nav-2x.png') 15px no-repeat;
+    background: transparent url('../assets/swgoh-icon.png') 15px no-repeat;
     background-size: 150px 35px;
   }
   .navbar-brand:hover {
-    background-image: url('https://swgoh.gg/static/img/swgohgg-nav-orange-2x.png');
+    background-image: url('../assets/swgoh-icon.png');
     background-size: 150px 35px;
   }
 }

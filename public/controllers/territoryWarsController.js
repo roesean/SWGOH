@@ -1,22 +1,20 @@
-app.controller("characterController", function($scope, $state, $stateParams, homeService, collectionService) {
+'use strict';
+app.controller("territoryWarsController", function($scope, $state, $stateParams, userService, collectionService, localStorageService) {
 
   var charIndex = null;
   var dragStart = null
   $scope.collection = []
 
-  $scope.currentUser = ""
-
-  $scope.header = false;
   $scope.showTeamInput = false;
 
   // Grabbing collection of user from npm package
   $scope.getHeroCollection = function() {
-    $scope.header = true;
+    // Setting current user in LocalStorage
+    localStorageService.set('userData', { username: $scope.currentUser })
 
     collectionService.getHeroCollection($scope.currentUser)
       .then(function(response) {
         $scope.collection = response.data;
-        console.log(response.data);
         console.log($scope.collection);
       },
       function(error) {
@@ -24,7 +22,17 @@ app.controller("characterController", function($scope, $state, $stateParams, hom
       })
   }
 
-  // Initializing 4 teams to start
+  if(userService.getCurrentUser() == null) {
+    $scope.currentUser = "";
+    console.log($scope.currentUser);
+  }
+  else {
+    $scope.currentUser = userService.getCurrentUser();
+    $scope.getHeroCollection();
+    console.log($scope.currentUser);
+  }
+
+  // Initializing 5 teams to start
   $scope.teams = collectionService.getTeams();
 
   // Adding a new team

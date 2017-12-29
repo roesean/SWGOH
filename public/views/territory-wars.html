@@ -1,23 +1,10 @@
 <div class="container">
-  <div class="row fetch-collection-section" data-ng-show="!header">
-    <div class="col-md-12">
-      <h1 class="hero">Territory Wars <span>- organize your SWGOH characters</span></h1>
-      <p>Enter your <a href="https://swgoh.gg/">swgoh.gg</a> username to fetch your heros. If you don't have an account with them yet please go create one.</p>
-    </div>
-    <div class="form-group col-md-10">
-      <input type="text" class="form-control" data-ng-model="currentUser" placeholder="User Name..."/>
-    </div>
 
-    <div class="col-md-2">
-      <button class="btn btn-primary col-md-12" data-ng-click="getHeroCollection()">Get Heros</button>
-    </div>
-  </div>
-
-  <div class="row collection-section" data-ng-show="header">
-    <h1  class="text-center text-capitalize">{{ currentUser }}'s Characters</h1>
+  <div class="row collection-section">
+    <h1 class="text-center text-capitalize hero">Territory War's</h1>
 
     <div class="col-md-6 collection-container">
-      <h2 class="text-center">Characters</h2>
+      <h3 class="text-center">Characters</h3>
       <div class="clearfix" data-dropZone="collection" drop-container on-drag-enter="onDragEnter($event, $dragData)" on-drag-over="onDragOver($event, $dragData)" on-drag-start="onDragStart($event, $dragData)" on-drag-leave="onDragLeave($event, $dragData)" on-drop="onDrop($event, $dragData)">
 
         <div class="custom-5-col" data-ng-repeat="item in collection | orderBy: '-galacticPower'" drag-container="true" drag-data="item" on-drag-start="onDragStart($event, $dragData)" on-drag-end="onDragEnd($event, $dragData)">
@@ -59,11 +46,21 @@
 
     <div class="col-md-6 team-container">
       <div class="row">
-        <h2 class="teams-header">Teams <span class="s7-add-user" ng-show="!showTeamInput" ng-click="showTeamInput = true"></span></h2>
-        <div class="add-team-box" ng-show="showTeamInput">
-          <input type="text" class="col-md-10" ng-show="showTeamInput" ng-model="team.name" />
-          <button ng-click="addTeam()">Add</button>
+        <div class="teams-header-container">
+          <h3 class="teams-header">
+            Teams
+            <span class="s7-add-user" ng-show="!showTeamInput" ng-click="showTeamInput = true"></span>
+            <span class="s7-close" ng-show="showTeamInput" ng-click="showTeamInput = false"></span>
+          </h3>
         </div>
+
+        <div class="teams-input-container">
+          <div class="form-group" ng-show="showTeamInput">
+            <input type="text" ng-model="team.name" />
+            <button ng-click="addTeam()">Add</button>
+          </div>
+        </div>
+
       </div>
 
       <div ng-repeat="t in teams">
@@ -72,7 +69,7 @@
           <span class="s7-trash trash" data-ng-click="removeTeam(t)"></span>
         </div>
 
-        <div class="update-team-box" data-ng-show="t.updateName">
+        <div class="form-group" data-ng-show="t.updateName">
           <input type="text" data-ng-model="t.name">
           <button ng-click="t.updateName = !t.updateName">Update</button>
         </div>

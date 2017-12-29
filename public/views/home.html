@@ -1,10 +1,17 @@
 <div class="container">
-  <div class="row">
-    <div class="form-group">
-      <lable>User Name</lable>
-      <input type="text" class="form-control" data-ng-model="userName" placehold="Blasmorian..."/>
+  <div class="row fetch-collection-section" data-ng-show="!header">
+
+    <div class="row">
+      <h1 class="text-center hero">SWGOH Tools!</h1>
+      <p class="hero-text">To get the most out of our tools you will need to enter your <a href="https://swgoh.gg/">swgoh.gg</a> username to fetch your heros. If you don't have an account with them yet please go create one.</p>
     </div>
 
-    <button class="btn btn-primary center-block" data-ng-click="setCurrentUser()">Lets Go</button>
+    <div class="row home-input-container">
+      <div class="form-group">
+        <input type="text" placeholder="SWGOH.GG username..." ng-model="currentUser">
+        <button type="submit" class="btn" ng-click="setCurrentUser()">Get Heros</button>
+      </div>
+    </div>
+
   </div>
 </div>
