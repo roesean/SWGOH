@@ -7,3 +7,6 @@ FRONT
 BACK
 - Then scrape each route for full character breakdown and write to a DB.
 - Possibility to share (encoding url?) - Share link, so we can share our team with our guildmates
+
+Upcoming Features
+- Filter characters by faction and GP
