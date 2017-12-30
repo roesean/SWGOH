@@ -1,8 +1,7 @@
 FRONT
-- Create a Home page and state for it
-- Refactor nav bar search to manage "user logged in"
-- Possibility to separate defense from Offense team
+- "Set" button in Navbar to trigger a angular digest on the page they are on.
 - Filters in the characters - limit the characters list to 6000 GP+ only
+- Possibility to separate defense from Offense team
 - Show the zeta
 
 BACK

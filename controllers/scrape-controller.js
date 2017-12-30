@@ -1,23 +1,25 @@
 const cheerio = require('cheerio');
 const axios = require('axios');
 
-function characterList() {
+function characterList(req, res) {
   axios.get('https://swgoh.gg/')
     .then(function (response) {
-      console.log("=====================");
-      console.log("      RESPONSE       ");
-      console.log("=====================");
-      console.log(response.data);
 
       const $ = cheerio.load(response.data)
+      var characterList = $('.media-heading h5');
+      var urlNames = []
 
-      console.log($('li.media.list-group-item.p-0.character'));
+      for(var i = 0; i < characterList.length; i++){
+        urlNames.push($(characterList[i]).text()
+                                         .toLowerCase()
+                                         .replace(/[()"']/g, '')
+                                         .replace(/( - )/g, '-')
+                                         .replace(/[" "]/g, '-'))
+      }
 
+      res.json(urlNames)
     })
     .catch(function (error) {
-      console.log("=====================");
-      console.log("       ERROR         ");
-      console.log("=====================");
       console.log(error);
     });
 }

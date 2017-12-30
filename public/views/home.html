@@ -14,4 +14,65 @@
     </div>
 
   </div>
+
+  <div class="row home-profile-section" ng-show="showProfile">
+    <h2 class="text-center text-capitalize">{{ currentUserStats.username }}</h2>
+
+    <div class="col-md-4">
+      <div class="panel panel-default panel-profile m-b-sm">
+        <div class="panel-header-image" style="background-image: {{ headerImage.L }}"></div>
+        <div class="panel-body">
+          <h3>Player Info</h3>
+          <p>User# <strong class="pull-right">{{ currentUserStats.userId }}</strong></p>
+          <p>Arena Rank <strong class="pull-right">{{ currentUserStats.arenaRank }}</strong></p>
+          <p>Collection Score <strong class="pull-right">{{ currentUserStats.collectionScore }}%</strong></p>
+          <p>Level <strong class="pull-right">{{ currentUserStats.level }}</strong></p>
+          <p>Guild
+            <strong class="pull-right">
+              <a target="_blank" href="{{ 'https://swgoh.gg'+ currentUserStats.guildUrl }}"> {{ currentUserStats.guild }} </a>
+            </strong>
+          </p>
+          <p>Ally Code <strong class="pull-right">{{ currentUserStats.allyCode }}</strong></p>
+          <p>Joined <strong class="pull-right">{{ currentUserStats.joined }}</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-default panel-profile m-b-sm">
+        <div class="panel-header-image" style="background-image: {{ headerImage.C }}"></div>
+        <div class="panel-body">
+          <h3>Player Stats</h3>
+          <p>Galactic Power <strong class="pull-right">{{ currentUserStats.galacticPower }}</strong></p>
+          <p>Galactic Power (Characters) <strong class="pull-right">{{ currentUserStats.charactersGalacticPower }}</strong></p>
+          <p>Galactic Power (Ships) <strong class="pull-right">{{ currentUserStats.shipsGalacticPower }}</strong></p>
+          <p>PVE Battles Won <strong class="pull-right">{{ currentUserStats.pVEBattlesWon }}</strong></p>
+          <p>PVE Hard Battles Won <strong class="pull-right">{{ currentUserStats.pVEHardBattlesWon }}</strong></p>
+          <p>Galactic War Battles Won <strong class="pull-right">{{ currentUserStats.galacticWarBattlesWon }}</strong></p>
+          <p>Arena Battles Won <strong class="pull-right">{{ currentUserStats.arenaBattlesWon }}</strong></p>
+          <p>Guild Currency Earned <strong class="pull-right">{{ currentUserStats.guildCurrencyEarned }}</strong></p>
+          <p>Raids Won <strong class="pull-right">{{ currentUserStats.raidsWon }}</strong></p>
+          <p>Ship Battles Won <strong class="pull-right">{{ currentUserStats.shipBattlesWon }}</strong></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="panel panel-default panel-profile m-b-sm">
+        <div class="panel-header-image" style="background-image: {{ headerImage.R }}"></div>
+          <div class="panel-body">
+          <h3>Character Stats</h3>
+          <p>Characters <strong class="pull-right">{{ currentUserStats.characters }}</strong></p>
+          <p>7 Star Characters <strong class="pull-right">{{ currentUserStats.characters7 }}</strong></p>
+          <p>6 Star Characters <strong class="pull-right">{{ currentUserStats.characters6 }}</strong></p>
+          <p>Gear 12<strong class="pull-right">{{ currentUserStats.gearXII }}</strong></p>
+          <p>Gear 11<strong class="pull-right">{{ currentUserStats.gearXI }}</strong></p>
+          <p>Gear 10<strong class="pull-right">{{ currentUserStats.gearX }}</strong></p>
+          <p>Gear 9<strong class="pull-right">{{ currentUserStats.gearIX }}</strong></p>
+          <p>Gear 8<strong class="pull-right">{{ currentUserStats.gearVIII }}</strong></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
 </div>

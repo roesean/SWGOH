@@ -1,5 +1,7 @@
+'use strict';
 app.service("userService", function($http, localStorageService) {
 
+  // Current User
   if(localStorageService.get('userData') == undefined) {
     this.currenetUser = null;
     console.log(this.currentUser);
@@ -20,6 +22,11 @@ app.service("userService", function($http, localStorageService) {
 
   this.removeCurrentUser = function() {
     localStorageService.remove('userData')
+  }
+
+  //HTTP REQUESTS
+  this.getProfile = function(user) {
+    return $http.get('./profile/?username=' + user)
   }
 
 })

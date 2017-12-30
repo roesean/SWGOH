@@ -164,6 +164,14 @@ body {
   color: #2e2e2e;
 }
 
+.panel-header-image {
+  height: 170px;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
 /* SWGOH */
 
 .mfp-bg {

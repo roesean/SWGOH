@@ -1,3 +1,4 @@
+'use strict';
 app.service("collectionService", function($http) {
 
   var _teams = [];
