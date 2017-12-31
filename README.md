@@ -5,7 +5,7 @@ FRONT
 - Show the zeta
 
 BACK
-- Then scrape each route for full character breakdown and write to a DB.
+- Then scrape each route for full character breakdown and write to a JSON. SCRAPER BUILT
 - Possibility to share (encoding url?) - Share link, so we can share our team with our guildmates
 
 Upcoming Features
