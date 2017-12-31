@@ -1,4 +1,22 @@
 // Character
+var Character = function(name, urlName, imgUrl, description, gearLevel, primary, general, offense, defense) {
+  this.name = name;
+  this.urlName = urlName;
+  this.imgUrl = imgUrl;
+  this.description = description;
+  this.gearLevel = gearLevel;
+  this.primary = primary;
+  this.general = general;
+  this.offense = offense;
+  this.defense = defense;
+  this.factions = [];
+  this.abilityClasses = [];
+  this.abilities = [];
+  this.gearNeeded = [];
+  this.gearEquipped = [];
+  this.mods = [];
+}
+
 var CharacterPrimary = function(power, statPower, strength, agility, intelligence, strengthMod, agilityMod, intelligenceMod) {
   this.power = power;
   this.statPower = statPower;
@@ -42,20 +60,6 @@ var CharacterDefense = function(armor, dodgeChance, physicalCriticalAvoidance, r
   this.specialCriticalAvoidance = specialCriticalAvoidance;
 }
 
-var Character = function(name, urlName, description, primary, general, offense, defense) {
-  this.name = name;
-  this.urlName = urlName;
-  this.description = description;
-  this.primary = primary;
-  this.offense = offense;
-  this.defense = defense;
-  this.factions = [];
-  this.abilityClasses = [];
-  this.abilities = [];
-  this.gearNeeded = [];
-  this.mods = [];
-}
-
 var CharacterSkill = function(name, description, type, coolDown, imgUrl, maxLevel, currentLevel) {
   this.name = name;
   this.description = description;
@@ -66,8 +70,13 @@ var CharacterSkill = function(name, description, type, coolDown, imgUrl, maxLeve
   this.currentLevel = currentLevel;
 }
 
-var CharacterGear = function() {
-
+var CharacterGear = function(name, mkLevel, imgUrl, cost, requiredLevel) {
+  this.name = name;
+  this.mkLevel = mkLevel;
+  this.imgUrl = imgUrl;
+  this.cost = cost;
+  this.requiredLevel = requiredLevel;
+  this.stats = [];
 }
 
 var CharScrape = function(id, url) {
@@ -75,8 +84,21 @@ var CharScrape = function(id, url) {
   this.url = url;
 }
 
-var CharacterMod = function() {
+// MODS
+var Mod = function(name, level, pips, imgUrl, modSlot, modType, primary) {
+  this.name = name;
+  this.level = level;
+  this.pips = pips;
+  this.imgUrl = imgUrl;
+  this.modSlot = modSlot;
+  this.modType = modType;
+  this.primary = primary;
+  this.secondaries = []];
+}
 
+var ModStat = function(value, label) {
+  this.value = value;
+  this.label = label;
 }
 
 // Ships
@@ -90,15 +112,16 @@ var User = function() {
 }
 
 module.exports = {
+  Character,
   CharacterPrimary,
   CharacterGeneral,
   CharacterOffense,
   CharacterDefense,
-  Character,
   CharacterSkill,
   CharacterGear,
   CharScrape,
-  CharacterMod,
+  Mod,
+  ModStat,
   Ship,
   User
 }

@@ -1,6 +1,6 @@
 const axios = require('axios');
 const fs = require('fs');
-const { CharacterPrimary, CharacterGeneral, CharacterOffense, CharacterDefense, Character, CharacterSkill, CharacterGear, CharScrape, CharacterMod, Ship, User } = require('../constructors/constructors')
+const { Character, CharacterPrimary, CharacterGeneral, CharacterOffense, CharacterDefense, CharacterSkill, CharacterGear, CharScrape, Mod, ModStat, Ship, User } = require('../constructors/constructors')
 const cheerioAdv = require('cheerio-advanced-selectors')
 const cheerio = cheerioAdv.wrap(require('cheerio'))
 const characterUrlJson = require("../static/characterUrls.json")
@@ -69,6 +69,7 @@ function characterParser(charName) {
       // BASE
       const name$ = $('.content-container-aside .panel-title a').text()
       const urlName$ = $('.content-container-aside .panel-title a').attr('href').substr(11)
+      const imgUrl$ = $(".panel-profile-img").attr('src')
       const description$ = $('.content-container-aside .panel-body p').text();
 
       // PRIMARY
@@ -101,7 +102,9 @@ function characterParser(charName) {
       var toon = new Character(
         name$,
         urlName$,
+        imgUrl$,
         description$,
+        null,
         new CharacterPrimary(power$, null, strength$, agility$, intelligence$, strengthMod$, agilityMod$, intelligenceMod$),
         new CharacterGeneral(health$, protection$, speed$, null, potency$, tenacity$, healthSteal$),
         new CharacterOffense(physicalDamage$, null, armorPenetration$, null, specialDamage$, specialCriticalDamage$, null, resistancePenetration$, null, physicalCriticalRating$),
