@@ -1,5 +1,5 @@
 FRONT
-- Possibility to separate defense from Offense team
+- Possibility to separate Defense from Offense team
 - About page explaining the project, how others can help and or get involved.
 - Filters in the characters - limit the characters list to 6000 GP+ only
 - Show the zeta

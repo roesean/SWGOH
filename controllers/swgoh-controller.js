@@ -1,45 +1,16 @@
 const axios = require('axios');
 const fs = require('fs');
-const { Character, Ability } = require('../constructors/constructors')
+const { CharacterPrimary, CharacterGeneral, CharacterOffense, CharacterDefense, Character, CharacterSkill, CharacterGear, CharacterMod, Ship, User } = require('../constructors/constructors')
+const characterUrls = require('../static/characterUrls.json')
+// const shipUrls = require('../static/shipUrls.json')
 const cheerioAdv = require('cheerio-advanced-selectors')
 const cheerio = cheerioAdv.wrap(require('cheerio'))
 
 var characters = []
+var ships = []
 
-function characterList(req, res) {
-  axios.get('https://swgoh.gg/')
-    .then(function (response) {
-
-      const $ = cheerio.load(response.data)
-      var characterList = $('.media-heading h5');
-      var urlNames = []
-
-      for(var i = 0; i < characterList.length; i++){
-        urlNames.push($(characterList[i]).text()
-                                         .toLowerCase()
-                                         .replace(/[()"']/g, '')
-                                         .replace(/( - )/g, '-')
-                                         .replace(/[" "]/g, '-'))
-      }
-
-      for (var i = 0; i < urlNames.length; i++) {
-        character(urlNames[i])
-      }
-
-      setTimeout(function() {
-        console.log(characters);
-        var charactersJSON = JSON.stringify(characters);
-        fs.writeFile('./static/characters.json', charactersJSON, 'utf8');
-      }, 10000)
-
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}
-
-function character(charName) {
-  axios.get('https://swgoh.gg/characters/' + charName)
+function characters(req, res) {
+  axios.get('https://swgoh.gg/characters/' + req.query.username)
     .then(function(response) {
       const $ = cheerio.load(response.data)
 
@@ -93,8 +64,6 @@ function character(charName) {
       var toon = new Character(name$, urlName$, description$, power$, strengthMod$, agilityMod$, intelligenceMod$, strength$, agility$, intelligence$, speed$, physicalDamage$, physicalCriticalRating$, specialDamage$, specialCriticalDamage$, armorPenetration$, resistancePenetration$, potency$, health$, armor$, resistance$, tenacity$, healthSteal$, protection$)
 
       // ABILITIES
-      // var abilities = $('.content-container-primary li.media.list-group-item.p-0 .char-detail-info')
-
       var abilityName = abilities.children('div.media-heading').children("h5");
       var abilityDescription = abilities.children('p:not([class])')
       var abilityCoolDown = abilities.children('div.media-heading').children("h5")
@@ -125,11 +94,6 @@ function character(charName) {
       };
 
       characters.push(toon);
-
-      // var charactersJSON = JSON.stringify(characters);
-
-      // fs.writeFile('./static/characters.json', charactersJSON, 'utf8');
-
     })
     .catch(function(error) {
       console.log("=====================");
@@ -139,4 +103,17 @@ function character(charName) {
     })
 }
 
-module.exports = { characterList, character }
+function ships(req, res) {
+
+}
+
+function profile(req, res) {
+
+}
+
+function guild(req, res) {
+
+}
+
+
+module.exports = { characters, ships, profile, guild }
