@@ -36,9 +36,20 @@ var Character = function(name, urlName, description, power, strengthMod, agility
   this.abilities = [];
 }
 
-var Ability = function(name, description) {
+var Ability = function(name, description, type, coolDown, imgUrl) {
   this.name = name;
   this.description = description;
+  this.type = type;
+  this.coolDown = coolDown;
+  this.imgUrl = imgUrl;
+}
+
+var Gear = function() {
+
+}
+
+var Mod = function() {
+
 }
 
 var Ship = function() {
@@ -46,7 +57,7 @@ var Ship = function() {
 }
 
 var User = function() {
-  
+
 }
 
-module.exports = { Character, Ability, Ship, User }
+module.exports = { Character, Ability, Gear, Mod, Ship, User }

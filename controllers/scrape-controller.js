@@ -1,9 +1,7 @@
 const axios = require('axios');
 const { Character, Ability } = require('../constructors/constructors')
-var cheerio = require('cheerio')
-var cheerioAdv = require('cheerio-advanced-selectors')
-
-cheerio = cheerioAdv.wrap(cheerio)
+const cheerioAdv = require('cheerio-advanced-selectors')
+const cheerio = cheerioAdv.wrap(require('cheerio'))
 
 function characterList(req, res) {
   axios.get('https://swgoh.gg/')
@@ -29,7 +27,7 @@ function characterList(req, res) {
 }
 
 function character(req, res) {
-  axios.get('https://swgoh.gg/characters/aayla-secura/')
+  axios.get('https://swgoh.gg/characters/admiral-ackbar/')
     .then(function(response) {
       const $ = cheerio.load(response.data)
 
@@ -83,13 +81,25 @@ function character(req, res) {
       var toon = new Character(name$, urlName$, description$, power$, strengthMod$, agilityMod$, intelligenceMod$, strength$, agility$, intelligence$, speed$, physicalDamage$, physicalCriticalRating$, specialDamage$, specialCriticalDamage$, armorPenetration$, resistancePenetration$, potency$, health$, armor$, resistance$, tenacity$, healthSteal$, protection$)
 
       // ABILITIES
-      var abilityName = abilities.children('div.media-heading').children("h5")
+      // var abilities = $('.content-container-primary li.media.list-group-item.p-0 .char-detail-info')
+
+      var abilityName = abilities.children('div.media-heading').children("h5");
       var abilityDescription = abilities.children('p:not([class])')
+      var abilityCoolDown = abilities.children('div.media-heading').children("h5")
+      var abilityImgUrl = $("img.char-ability-img")
 
       for (var i = 0; i < abilities.length; i++) {
-        var nameA$ = $(abilityName[i]).text().replace(/\r?\n|\r/g, '')
-        var descriptionA$ = $(abilityDescription[i]).text().replace(/\r?\n|\r/g, '')
-        toon.abilities.push(new Ability(nameA$, descriptionA$))
+        if($(abilityCoolDown[i]).children().length == 0) {
+          var coolDown$ = 0;
+        }
+        else {
+          var coolDown$ = parseInt($(abilityCoolDown[i]).children().text().split(" ")[0]);
+        }
+        var descriptionA$ = $(abilityDescription[i]).text().replace(/\r?\n|\r/g, '');
+        var nameA$ = $(abilityName[i]).children().remove().end().text().replace(/\r?\n|\r/g, '').replace(" ", '');
+        var type$ = $($(abilities[i]).find('small')[0]).text().split(" · ")[1];
+        var imgUrl$ = $(abilityImgUrl[i]).attr('src');
+        toon.abilities.push(new Ability(nameA$, descriptionA$, type$, coolDown$, imgUrl$))
       }
 
       // FACTIONS
