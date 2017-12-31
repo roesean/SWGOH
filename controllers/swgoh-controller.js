@@ -16,64 +16,64 @@ function characters(req, res) {
       const $ = cheerio.load(response.data)
 
       // SETUP
-      var base = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[0]
-      var primaryAttributes = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[1]
-      var general = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[2]
-      var physicalOffense = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[3]
-      var physicalSurvivability = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[4]
-      var specialOffense = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[5]
-      var specialSurvivability = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[6]
+      var base = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[0];
+      var primaryAttributes = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[1];
+      var general = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[2];
+      var physicalOffense = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[3];
+      var physicalSurvivability = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[4];
+      var specialOffense = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[5];
+      var specialSurvivability = $('.content-container-primary-aside .list-group.media-list.media-list-stream li')[6];
 
-      var skills = $('.pc-skill')
-      var factions = $('.pc-char-overview a')
-      var abilityClasses = $('.panel.panel-default.m-b-sm:eq(1) a')
-      var mods = ;
+      var skills = $('.pc-skill');
+      var factions = $('.pc-char-overview a');
+      var abilityClasses = $('.panel.panel-default.m-b-sm:eq(1) a');
+      var mods = null;
       var gearNeeded = $('.pc-needed-gear');
-      var currentGear = ;
+      var currentGear = null;
 
       // BASE
-      const name$ = $('.pc-char-overview-name').text()
-      const urlName$ = $('.pc-char-overview-name').attr('href').substr(11)
-      const imgUrl$ = $(".char-portrait-full-img").attr('src');
-      const description$ = null;
-      const gearLevel$ = $('.pc-gear div.pc-heading').text();
+      var name$ = $('.pc-char-overview-name').text();
+      var urlName$ = $('.pc-char-overview-name').attr('href').substr(11).replace(/[/]/g, "");
+      var imgUrl$ = $(".char-portrait-full-img").attr('src');
+      var description$ = null;
+      var gearLevel$ = $('.pc-gear div.pc-heading').text();
 
       // PRIMARY
-      const power$ = parseInt($(base).find('.pc-stat-value:eq(0)').text());
-      const statPower$ = parseInt($(base).find('.pc-stat-value:eq(1)').text());
-      const strength$ = parseInt($(primaryAttributes).find('.pc-stat-value:eq(0)').text());
-      const agility$ = parseInt($(primaryAttributes).find('.pc-stat-value:eq(1)').text());
-      const intelligence$ = parseInt($(primaryAttributes).find('.pc-stat-value:eq(2)').text());
-      const strengthMod$ = parseFloat($(primaryAttributes).find('.pc-stat-value:eq(3)').text());
-      const agilityMod$ = parseFloat($(primaryAttributes).find('.pc-stat-value:eq(4)').text());
-      const intelligenceMod$ = parseFloat($(primaryAttributes).find('.pc-stat-value:eq(5)').text());
+      var power$ = parseInt($(base).find('.pc-stat-value:eq(0)').text());
+      var statPower$ = parseInt($(base).find('.pc-stat-value:eq(1)').text());
+      var strength$ = parseInt($(primaryAttributes).find('.pc-stat-value:eq(0)').text());
+      var agility$ = parseInt($(primaryAttributes).find('.pc-stat-value:eq(1)').text());
+      var intelligence$ = parseInt($(primaryAttributes).find('.pc-stat-value:eq(2)').text());
+      var strengthMod$ = parseFloat($(primaryAttributes).find('.pc-stat-value:eq(3)').text());
+      var agilityMod$ = parseFloat($(primaryAttributes).find('.pc-stat-value:eq(4)').text());
+      var intelligenceMod$ = parseFloat($(primaryAttributes).find('.pc-stat-value:eq(5)').text());
 
       // GENERAL
-      const health$ = parseInt($(general).find('.pc-stat-value:eq(0)').text());
-      const protection$ = parseInt($(general).find('.pc-stat-value:eq(1)').text());
-      const speed$ = parseInt($(general).find('.pc-stat-value:eq(2)').text());
-      const criticalDamage$ = parseInt($(general).find('.pc-stat-value:eq(3)').text());
-      const potency$ = parseFloat($(general).find('.pc-stat-value:eq(4)').text());
-      const tenacity$ = parseFloat($(general).find('.pc-stat-value:eq(5)').text());
-      const healthSteal$ = parseFloat($(general).find('.pc-stat-value:eq(6)').text());
+      var health$ = parseInt($(general).find('.pc-stat-value:eq(0)').text());
+      var protection$ = parseInt($(general).find('.pc-stat-value:eq(1)').text());
+      var speed$ = parseInt($(general).find('.pc-stat-value:eq(2)').text());
+      var criticalDamage$ = parseInt($(general).find('.pc-stat-value:eq(3)').text());
+      var potency$ = parseFloat($(general).find('.pc-stat-value:eq(4)').text());
+      var tenacity$ = parseFloat($(general).find('.pc-stat-value:eq(5)').text());
+      var healthSteal$ = parseFloat($(general).find('.pc-stat-value:eq(6)').text());
 
       // OFFENSIVE
-      const physicalDamage$ = parseInt($(physicalOffense).find('.pc-stat-value:eq(0)').text());
-      const physicalCriticalChance$ = parseFloat($(physicalOffense).find('.pc-stat-value:eq(1)').text());
-      const armorPenetration$ = parseInt($(physicalOffense).find('.pc-stat-value:eq(2)').text());
-      const physicalAccuracy$ = parseFloat($(physicalOffense).find('.pc-stat-value:eq(3)').text());
-      const specialDamage$ = parseInt($(specialOffense).find('.pc-stat-value:eq(0)').text());
-      const specialCriticalChance$ = parseFloat($(specialOffense).find('.pc-stat-value:eq(1)').text());
-      const resistancePenetration$ = parseFloat($(specialOffense).find('.pc-stat-value:eq(2)').text());
-      const specialAccuracy$ = parseFloat($(specialOffense).find('.pc-stat-value:eq(3)').text());
+      var physicalDamage$ = parseInt($(physicalOffense).find('.pc-stat-value:eq(0)').text());
+      var physicalCriticalChance$ = parseFloat($(physicalOffense).find('.pc-stat-value:eq(1)').text());
+      var armorPenetration$ = parseInt($(physicalOffense).find('.pc-stat-value:eq(2)').text());
+      var physicalAccuracy$ = parseFloat($(physicalOffense).find('.pc-stat-value:eq(3)').text());
+      var specialDamage$ = parseInt($(specialOffense).find('.pc-stat-value:eq(0)').text());
+      var specialCriticalChance$ = parseFloat($(specialOffense).find('.pc-stat-value:eq(1)').text());
+      var resistancePenetration$ = parseFloat($(specialOffense).find('.pc-stat-value:eq(2)').text());
+      var specialAccuracy$ = parseFloat($(specialOffense).find('.pc-stat-value:eq(3)').text());
 
       // DEFENSIVE
-      const armor$ = parseFloat($(physicalSurvivability).find('.pc-stat-value:eq(0)').text());
-      const dodgeChance$ = parseFloat($(physicalSurvivability).find('.pc-stat-value:eq(1)').text());
-      const physicalCriticalAvoidance$ = parseFloat($(physicalSurvivability).find('.pc-stat-value:eq(2)').text());
-      const resistance$ = parseFloat($(specialSurvivability).find('.pc-stat-value:eq(0)').text());
-      const deflectionChance$ = parseFloat($(specialSurvivability).find('.pc-stat-value:eq(1)').text());
-      const specialCriticalAvoidance$ = parseFloat($(specialSurvivability).find('.pc-stat-value:eq(2)').text());
+      var armor$ = parseFloat($(physicalSurvivability).find('.pc-stat-value:eq(0)').text());
+      var dodgeChance$ = parseFloat($(physicalSurvivability).find('.pc-stat-value:eq(1)').text());
+      var physicalCriticalAvoidance$ = parseFloat($(physicalSurvivability).find('.pc-stat-value:eq(2)').text());
+      var resistance$ = parseFloat($(specialSurvivability).find('.pc-stat-value:eq(0)').text());
+      var deflectionChance$ = parseFloat($(specialSurvivability).find('.pc-stat-value:eq(1)').text());
+      var specialCriticalAvoidance$ = parseFloat($(specialSurvivability).find('.pc-stat-value:eq(2)').text());
 
       var toon = new Character(
         name$,
@@ -85,7 +85,7 @@ function characters(req, res) {
         new CharacterGeneral(health$, protection$, speed$, criticalDamage$, potency$, tenacity$, healthSteal$),
         new CharacterOffense(physicalDamage$, physicalCriticalChance$, armorPenetration$, physicalAccuracy$, specialDamage$, null, specialCriticalChance$, resistancePenetration$, specialAccuracy$, null),
         new CharacterDefense(armor$, dodgeChance$, physicalCriticalAvoidance$, resistance$, deflectionChance$, specialCriticalAvoidance$)
-      )
+      );
 
       ///////////////////////////////////////////////////////////////////////////////////////////
       ///////////////////////////////////// PICKUP FROM HERE ////////////////////////////////////
