@@ -1,13 +1,13 @@
 // Character
 var CharacterPrimary = function(power, statPower, strength, agility, intelligence, strengthMod, agilityMod, intelligenceMod) {
-  power = power;
-  statPower = statPower;
-  strength = strength;
-  agility = agility;
-  intelligence = intelligenc;
-  strengthMod = strengthMod;
-  agilityMod = agilityMod;
-  intelligenceMod = intelligenceMod;
+  this.power = power;
+  this.statPower = statPower;
+  this.strength = strength;
+  this.agility = agility;
+  this.intelligence = intelligence;
+  this.strengthMod = strengthMod;
+  this.agilityMod = agilityMod;
+  this.intelligenceMod = intelligenceMod;
 }
 
 var CharacterGeneral = function(health, protection, speed, criticalDamage, potency, tenacity, healthSteal) {
@@ -20,15 +20,17 @@ var CharacterGeneral = function(health, protection, speed, criticalDamage, poten
   this.healthSteal = healthSteal;
 }
 
-var CharacterOffense = function(physicalDamage, physicalCriticalChance, armorPenetration, physicalAccuracy, specialDamage, specialCriticalChance, resistancePenetration, specialAccuracy) {
+var CharacterOffense = function(physicalDamage, physicalCriticalChance, armorPenetration, physicalAccuracy, specialDamage, specialCriticalDamage, specialCriticalChance, resistancePenetration, specialAccuracy, physicalCriticalRating) {
   this.physicalDamage = physicalDamage;
   this.physicalCriticalChance = physicalCriticalChance;
   this.armorPenetration = armorPenetration;
   this.physicalAccuracy = physicalAccuracy;
   this.specialDamage = specialDamage;
+  this.specialCriticalDamage = specialCriticalDamage;
   this.specialCriticalChance = specialCriticalChance;
   this.resistancePenetration = resistancePenetration;
   this.specialAccuracy = specialAccuracy;
+  this.physicalCriticalRating = physicalCriticalRating;
 }
 
 var CharacterDefense = function(armor, dodgeChance, physicalCriticalAvoidance, resistance, deflectionChance, specialCriticalAvoidance) {
@@ -40,9 +42,10 @@ var CharacterDefense = function(armor, dodgeChance, physicalCriticalAvoidance, r
   this.specialCriticalAvoidance = specialCriticalAvoidance;
 }
 
-var Character = function(name, urlName, primary, general, offense, defense) {
+var Character = function(name, urlName, description, primary, general, offense, defense) {
   this.name = name;
   this.urlName = urlName;
+  this.description = description;
   this.primary = primary;
   this.offense = offense;
   this.defense = defense;

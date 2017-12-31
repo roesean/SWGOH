@@ -1,10 +1,10 @@
 const axios = require('axios');
 const fs = require('fs');
 const { CharacterPrimary, CharacterGeneral, CharacterOffense, CharacterDefense, Character, CharacterSkill, CharacterGear, CharacterMod, Ship, User } = require('../constructors/constructors')
-const characterUrls = require('../static/characterUrls.json')
-// const shipUrls = require('../static/shipUrls.json')
 const cheerioAdv = require('cheerio-advanced-selectors')
 const cheerio = cheerioAdv.wrap(require('cheerio'))
+const characterUrls = require('../static/characterUrls.json')
+// const shipUrls = require('../static/shipUrls.json')
 
 var characters = []
 var ships = []

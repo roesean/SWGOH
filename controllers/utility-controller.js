@@ -3,6 +3,8 @@ const fs = require('fs');
 const { CharacterPrimary, CharacterGeneral, CharacterOffense, CharacterDefense, Character, CharacterSkill, CharacterGear, CharScrape, CharacterMod, Ship, User } = require('../constructors/constructors')
 const cheerioAdv = require('cheerio-advanced-selectors')
 const cheerio = cheerioAdv.wrap(require('cheerio'))
+const characterUrlJson = require("../static/characterUrls.json")
+// const shipUrls = require('../static/shipUrls.json')
 
 var characters = []
 var ships = []
@@ -12,7 +14,6 @@ function characterUrlList(req, res) {
   // Scrape top player for all character links
   axios.get('https://swgoh.gg/u/%C3%ADn%20dragons%20blood/collection/')
     .then(function (response) {
-
       const $ = cheerio.load(response.data)
       var characterList = $('.char-portrait-full-link')
       var urlNames = []
@@ -32,7 +33,20 @@ function characterUrlList(req, res) {
 }
 
 // Grab Master Character List and Stats
-function characterMaster(charName) {
+function characterMaster(req, res) {
+  for (var i = 0; i < characterUrlJson.length; i++) {
+    characterParser(characterUrlJson[i].url);
+  }
+
+  setTimeout(function() {
+    var charactersDoc = JSON.stringify(characters);
+    fs.writeFile("./static/characterMaster.json", charactersDoc, 'utf8');
+  }, 7000)
+
+}
+
+// Parse out one character at a time
+function characterParser(charName) {
   axios.get('https://swgoh.gg/characters/' + charName)
     .then(function(response) {
       const $ = cheerio.load(response.data)
@@ -84,7 +98,15 @@ function characterMaster(charName) {
       const healthSteal$ = parseInt($(defensive[4]).text());
       const protection$ = parseInt($(defensive[5]).text().replace(",", ""));
 
-      var toon = new Character(name$, urlName$, description$, power$, strengthMod$, agilityMod$, intelligenceMod$, strength$, agility$, intelligence$, speed$, physicalDamage$, physicalCriticalRating$, specialDamage$, specialCriticalDamage$, armorPenetration$, resistancePenetration$, potency$, health$, armor$, resistance$, tenacity$, healthSteal$, protection$)
+      var toon = new Character(
+        name$,
+        urlName$,
+        description$,
+        new CharacterPrimary(power$, null, strength$, agility$, intelligence$, strengthMod$, agilityMod$, intelligenceMod$),
+        new CharacterGeneral(health$, protection$, speed$, null, potency$, tenacity$, healthSteal$),
+        new CharacterOffense(physicalDamage$, null, armorPenetration$, null, specialDamage$, specialCriticalDamage$, null, resistancePenetration$, null, physicalCriticalRating$),
+        new CharacterDefense(armor$, null, null, resistance$, null, null)
+      )
 
       // ABILITIES
       var abilityName = abilities.children('div.media-heading').children("h5");
@@ -103,7 +125,7 @@ function characterMaster(charName) {
         var nameA$ = $(abilityName[i]).children().remove().end().text().replace(/\r?\n|\r/g, '').replace(" ", '');
         var type$ = $($(abilities[i]).find('small')[0]).text().split(" · ")[1];
         var imgUrl$ = $(abilityImgUrl[i]).attr('src');
-        toon.abilities.push(new Ability(nameA$, descriptionA$, type$, coolDown$, imgUrl$))
+        toon.abilities.push(new CharacterSkill(nameA$, descriptionA$, type$, coolDown$, imgUrl$, null, null))
       }
 
       // FACTIONS
@@ -132,7 +154,12 @@ function shipUrlList(req, res) {
 }
 
 // Grab Master Ship List and Stats
-function shipMaster(shipMaster) {
+function shipMaster(req, res) {
+
+}
+
+// Parse out one ship at a time
+function shipParser(req, res) {
 
 }
 
