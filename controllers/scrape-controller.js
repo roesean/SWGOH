@@ -1,7 +1,10 @@
 const axios = require('axios');
+const fs = require('fs');
 const { Character, Ability } = require('../constructors/constructors')
 const cheerioAdv = require('cheerio-advanced-selectors')
 const cheerio = cheerioAdv.wrap(require('cheerio'))
+
+var characters = []
 
 function characterList(req, res) {
   axios.get('https://swgoh.gg/')
@@ -19,15 +22,24 @@ function characterList(req, res) {
                                          .replace(/[" "]/g, '-'))
       }
 
-      res.json(urlNames)
+      for (var i = 0; i < urlNames.length; i++) {
+        character(urlNames[i])
+      }
+
+      setTimeout(function() {
+        console.log(characters);
+        var charactersJSON = JSON.stringify(characters);
+        fs.writeFile('./static/characters.json', charactersJSON, 'utf8');
+      }, 10000)
+
     })
     .catch(function (error) {
       console.log(error);
     });
 }
 
-function character(req, res) {
-  axios.get('https://swgoh.gg/characters/admiral-ackbar/')
+function character(charName) {
+  axios.get('https://swgoh.gg/characters/' + charName)
     .then(function(response) {
       const $ = cheerio.load(response.data)
 
@@ -112,7 +124,11 @@ function character(req, res) {
         toon.abilityClasses.push($(abilityClasses[i]).text());
       };
 
-      res.json(toon);
+      characters.push(toon);
+
+      // var charactersJSON = JSON.stringify(characters);
+
+      // fs.writeFile('./static/characters.json', charactersJSON, 'utf8');
 
     })
     .catch(function(error) {
@@ -121,7 +137,6 @@ function character(req, res) {
       console.log("=====================");
       console.log(error);
     })
-
 }
 
 module.exports = { characterList, character }
