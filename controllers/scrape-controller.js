@@ -1,8 +1,9 @@
+const axios = require('axios');
+const { Character, Ability } = require('../constructors/constructors')
 var cheerio = require('cheerio')
 var cheerioAdv = require('cheerio-advanced-selectors')
 
 cheerio = cheerioAdv.wrap(cheerio)
-const axios = require('axios');
 
 function characterList(req, res) {
   axios.get('https://swgoh.gg/')
@@ -25,49 +26,6 @@ function characterList(req, res) {
     .catch(function (error) {
       console.log(error);
     });
-}
-
-var Character = function(name, urlName, description, power, strengthMod, agilityMod, intelligenceMod, strength, agility, intelligence, speed, physicalDamage, physicalCriticalRating, specialDamage, specialCriticalDamage, armorPenetration, resistancePenetration, potency, health, armor, resistance, tenacity, healthSteal, protection) {
-  this.name = name;
-  this.urlName = urlName;
-  this.description = description;
-  this.modifiers = {
-    strengthMod: strengthMod,
-    agilityMod: agilityMod,
-    intelligenceMod: intelligenceMod
-  };
-  this.primary = {
-    power: power,
-    strength: strength,
-    agility: agility,
-    intelligence: intelligence
-  };
-  this.offensive = {
-    speed: speed,
-    physicalDamage: physicalDamage,
-    physicalCriticalRating: physicalCriticalRating,
-    specialDamage: specialDamage,
-    specialCriticalDamage: specialCriticalDamage,
-    armorPenetration: armorPenetration,
-    resistancePenetration: resistancePenetration,
-    potency: potency
-  };
-  this.defensive = {
-    health: health,
-    armor: armor,
-    resistance: resistance,
-    tenacity: tenacity,
-    healthSteal: healthSteal,
-    protection: protection
-  };
-  this.factions = [];
-  this.abilityClasses = [];
-  this.abilities = [];
-}
-
-var Ability = function(name, description) {
-  this.name = name;
-  this.description = description;
 }
 
 function character(req, res) {
