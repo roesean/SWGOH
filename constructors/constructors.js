@@ -93,7 +93,7 @@ var Mod = function(name, level, pips, imgUrl, modSlot, modType, primary) {
   this.modSlot = modSlot;
   this.modType = modType;
   this.primary = primary;
-  this.secondaries = []];
+  this.secondaries = [];
 }
 
 var ModStat = function(value, label) {

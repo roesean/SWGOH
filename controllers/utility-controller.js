@@ -42,7 +42,6 @@ function characterMaster(req, res) {
     var charactersDoc = JSON.stringify(characters);
     fs.writeFile("./static/characterMaster.json", charactersDoc, 'utf8');
   }, 7000)
-
 }
 
 // Parse out one character at a time
