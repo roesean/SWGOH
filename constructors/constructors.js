@@ -71,14 +71,11 @@ var CharacterSkill = function(name, description, type, coolDown, imgUrl, maxLeve
   this.currentLevel = currentLevel;
 }
 
-var CharacterGear = function(name, mkLevel, imgUrl, cost, requiredLevel, quantity) {
+var CharacterGear = function(name, mkLevel, imgUrl, quantity) {
   this.name = name;
   this.mkLevel = mkLevel;
   this.imgUrl = imgUrl;
-  this.cost = cost;
-  this.requiredLevel = requiredLevel;
   this.quantity = quantity;
-  this.stats = [];
 }
 
 var CharScrape = function(id, url) {

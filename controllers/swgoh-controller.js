@@ -42,7 +42,6 @@ function collection(req, res) {
     })
 }
 
-
 function characterParser(username, characterId, characterUri) {
   axios.get('https://swgoh.gg/u/' + username + '/collection/' + characterId + '/' + characterUri + '/')
     .then(function(response) {
@@ -150,8 +149,6 @@ function characterParser(username, characterId, characterUri) {
           $(gearNeeded[i]).find('.gear-icon-img').attr('alt'), // name
           $(gearNeeded[i]).find('.gear-icon-mk-level').text(), // MK lvl
           $(gearNeeded[i]).find('.gear-icon-img').attr('src'), // imgURL
-          null, // cost
-          null, // requiredLevel
           parseInt($(gearNeeded[i]).find('.pc-needed-gear-count').text()) // quantity
         ))
       }
@@ -162,9 +159,7 @@ function characterParser(username, characterId, characterUri) {
           $(equippedGear[i]).find('.gear-icon-img').attr('alt'), // name
           $(equippedGear[i]).find('.gear-icon-mk-level').text(), // mkLevel
           $(equippedGear[i]).find('.gear-icon-img').attr('src'), // imgUrl
-          null, // cost
-          null, // requiredLevel
-          1// quantity
+          1 // quantity
         ))
       }
 
@@ -195,7 +190,6 @@ function characterParser(username, characterId, characterUri) {
       }
 
       characters.push(toon);
-      // res.json(characters[0])
 
     })
     .catch(function(error) {
@@ -207,6 +201,10 @@ function characterParser(username, characterId, characterUri) {
 }
 
 function ships(req, res) {
+
+}
+
+function shipParser(username, shipId, shipUrl) {
 
 }
 
