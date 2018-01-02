@@ -23,4 +23,10 @@ app.config(function($stateProvider, $urlRouterProvider) {
       controller: "territoryWarsController"
     })
 
+    .state("app.about", {
+      url: "/about",
+      templateUrl: "./views/about.html",
+      controller: "homeController"
+    })
+
 })
