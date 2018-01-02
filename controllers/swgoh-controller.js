@@ -6,12 +6,45 @@ const cheerio = cheerioAdv.wrap(require('cheerio'))
 const characterUrlJson = require('../static/characterUrls.json')
 // const shipUrls = require('../static/shipUrls.json')
 
-var characters = []
 var ships = []
+var characters = []
 
 function collection(req, res) {
-  // axios.get('https://swgoh.gg/u/' + req.query.username + '/collection/' + characterUrlJson.id + '/' + characterUrlJson.url + '/')
-  axios.get('https://swgoh.gg/u/themeatloaf/collection/138/grand-moff-tarkin/')
+  var username = req.query.username
+  var urlNames = []
+
+  axios.get('https://swgoh.gg/u/' + username + '/collection/')
+    .then(function (response) {
+      const $ = cheerio.load(response.data)
+      var characterList = $('.collection-char:not(.collection-char-missing)')
+
+      for(var i = 0; i < characterList.length; i++){
+        var link = $(characterList[i]).find('.char-portrait-full-link').attr('href').split('/')
+        urlNames.push(new CharScrape(link[4], link[5]));
+      }
+      console.log(urlNames);
+      console.log(urlNames.length);
+
+      for (var i = 0; i < urlNames.length; i++) {
+        characterParser(username, urlNames[i].id, urlNames[i].url)
+      }
+
+      setTimeout(function() {
+        res.json(characters)
+      }, 10000)
+
+    })
+    .catch(function(error) {
+      console.log('=====================');
+      console.log('        ERROR        ');
+      console.log('=====================');
+      console.log(error);
+    })
+}
+
+
+function characterParser(username, characterId, characterUri) {
+  axios.get('https://swgoh.gg/u/' + username + '/collection/' + characterId + '/' + characterUri + '/')
     .then(function(response) {
       var $ = cheerio.load(response.data)
 
@@ -162,7 +195,7 @@ function collection(req, res) {
       }
 
       characters.push(toon);
-      res.json(characters[0])
+      // res.json(characters[0])
 
     })
     .catch(function(error) {
