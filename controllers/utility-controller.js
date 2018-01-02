@@ -39,12 +39,10 @@ function characterMaster(req, res) {
   }
 
   setTimeout(function () {
-  var charactersDoc = JSON.stringify(characters, null, 4);
-  fs.writeFile("./static/characterMaster.json", charactersDoc, 'utf8', function (error) {
-    if (error) {
-      console.log(err);
-    }
-  });
+    var charactersDoc = JSON.stringify(characters, null, 4);
+    fs.writeFile("./static/characterMaster.json", charactersDoc, 'utf8', function (error) {
+      if (error) console.log(err)
+    });
   }, 10000)
 }
 
@@ -143,6 +141,7 @@ function characterParser(charName) {
       for (var i = 0; i < abilityClasses.length; i++) {
         toon.abilityClasses.push($(abilityClasses[i]).text());
       };
+
       axios.get('https://swgoh.gg/characters/' + charName + '/gear')
         .then(function (response) {
           var $ = cheerio.load(response.data);
@@ -150,6 +149,7 @@ function characterParser(charName) {
           $('.media.list-group-item.p-0.character').each(function (i) {
             const thisGear = $(this).find('a').attr('title');
             const gearLvl = 'Gear ' + (Math.floor(i / 6) + 1).toString();
+
             if (toon.gearMaster[gearLvl]) {
               toon.gearMaster[gearLvl].push(thisGear);
             } else {
