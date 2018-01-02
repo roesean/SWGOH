@@ -106,7 +106,7 @@ var Ship = function() {
 }
 
 // Profile
-var User = function() {
+var Profile = function() {
 
 }
 
@@ -122,5 +122,5 @@ module.exports = {
   Mod,
   ModStat,
   Ship,
-  User
+  Profile
 }

@@ -1,6 +1,7 @@
 const axios = require('axios');
 const fs = require('fs');
-const { Character, CharacterPrimary, CharacterGeneral, CharacterOffense, CharacterDefense, CharacterSkill, CharacterGear, CharScrape, Mod, ModStat, Ship, User } = require('../constructors/constructors')
+const { User } = require('../models/user');
+const { Character, CharacterPrimary, CharacterGeneral, CharacterOffense, CharacterDefense, CharacterSkill, CharacterGear, CharScrape, Mod, ModStat, Ship, Profile } = require('../constructors/constructors')
 const cheerioAdv = require('cheerio-advanced-selectors')
 const cheerio = cheerioAdv.wrap(require('cheerio'))
 const characterUrlJson = require('../static/characterUrls.json')
@@ -10,36 +11,79 @@ var ships = []
 var characters = []
 
 function collection(req, res) {
-  var username = req.query.username
-  var urlNames = []
+  var userName = req.query.username
 
-  axios.get('https://swgoh.gg/u/' + username + '/collection/')
-    .then(function (response) {
-      const $ = cheerio.load(response.data)
-      var characterList = $('.collection-char:not(.collection-char-missing)')
+  User.find().where('userName').equals(userName)
+  .exec(function(err, users) {
+    if (err) {
+      res.status(500).json({errorMessage: `Could not perform task because: ${err}`});
+    }
+    else {
 
-      for(var i = 0; i < characterList.length; i++){
-        var link = $(characterList[i]).find('.char-portrait-full-link').attr('href').split('/')
-        urlNames.push(new CharScrape(link[4], link[5]));
+      // var threeDays = 72 * 60 * 60 * 1000; // ms
+      var threeDays = 1000; // ms
+      if(users.length > 0 && ((new Date) - users[0].createdAt < threeDays)) {
+        res.json(users[0]);
       }
-      console.log(urlNames);
-      console.log(urlNames.length);
+      else {
 
-      for (var i = 0; i < urlNames.length; i++) {
-        characterParser(username, urlNames[i].id, urlNames[i].url)
+        // If there was a user with that username - remove him first before re-adding to DB
+        if(users.length > 0) {
+          User.findByIdAndRemove(users[0]._id, function(err, user) {
+            if(err) {
+              res.status(500).json({errorMessage: `Could not perform delete because: ${err}`});
+            } else if (!user) {
+              res.status(404).json({errorMessage: `No user was found at id: ${users[0]._id}`})
+            }
+          })
+        }
+
+        // Scraping
+        var urlNames = []
+        axios.get('https://swgoh.gg/u/' + userName + '/collection/')
+          .then(function (response) {
+            const $ = cheerio.load(response.data)
+            var characterList = $('.collection-char:not(.collection-char-missing)')
+
+            for(var i = 0; i < characterList.length; i++){
+              var link = $(characterList[i]).find('.char-portrait-full-link').attr('href').split('/')
+              urlNames.push(new CharScrape(link[4], link[5]));
+            }
+            console.log(urlNames);
+            console.log(urlNames.length);
+
+            for (var i = 0; i < urlNames.length; i++) {
+              characterParser(userName, urlNames[i].id, urlNames[i].url)
+            }
+
+            setTimeout(function() {
+              var newUser = new User({
+                userName: userName,
+                characters: characters,
+                ships: [],
+                profile: [],
+                guild: []
+              })
+              newUser.save(function(err, user) {
+                if(err) {
+                  res.status(500).json({errorMessage: `There was an error with our DB: ${err}`});
+                }
+                else {
+                  res.json(user)
+                }
+              })
+            }, 10000)
+          })
+          .catch(function(error) {
+            console.log('=====================');
+            console.log('        ERROR        ');
+            console.log('=====================');
+            console.log(error);
+          })
+
       }
-
-      setTimeout(function() {
-        res.json(characters)
-      }, 10000)
-
-    })
-    .catch(function(error) {
-      console.log('=====================');
-      console.log('        ERROR        ');
-      console.log('=====================');
-      console.log(error);
-    })
+    };
+  })
 }
 
 function characterParser(username, characterId, characterUri) {
