@@ -11,7 +11,7 @@ var Character = function(name, urlName, imgUrl, description, gearLevel, primary,
   this.defense = defense;
   this.factions = [];
   this.abilityClasses = [];
-  this.abilities = [];
+  this.skills = [];
   this.gearNeeded = [];
   this.gearEquipped = [];
   this.mods = [];
@@ -70,12 +70,13 @@ var CharacterSkill = function(name, description, type, coolDown, imgUrl, maxLeve
   this.currentLevel = currentLevel;
 }
 
-var CharacterGear = function(name, mkLevel, imgUrl, cost, requiredLevel) {
+var CharacterGear = function(name, mkLevel, imgUrl, cost, requiredLevel, quantity) {
   this.name = name;
   this.mkLevel = mkLevel;
   this.imgUrl = imgUrl;
   this.cost = cost;
   this.requiredLevel = requiredLevel;
+  this.quantity = quantity;
   this.stats = [];
 }
 
@@ -85,13 +86,13 @@ var CharScrape = function(id, url) {
 }
 
 // MODS
-var Mod = function(name, level, pips, imgUrl, modSlot, modType, primary) {
+var Mod = function(name, level, pips, imgUrl, modSlot, modSet, primary) {
   this.name = name;
   this.level = level;
   this.pips = pips;
   this.imgUrl = imgUrl;
   this.modSlot = modSlot;
-  this.modType = modType;
+  this.modSet = modSet;
   this.primary = primary;
   this.secondaries = [];
 }
