@@ -20,8 +20,8 @@ function collection(req, res) {
     }
     else {
 
-      // var threeDays = 72 * 60 * 60 * 1000; // ms
-      var threeDays = 1000; // ms
+      var threeDays = 72 * 60 * 60 * 1000; // ms
+      // var threeDays = 1000; // Test for remove
       if(users.length > 0 && ((new Date) - users[0].createdAt < threeDays)) {
         res.json(users[0]);
       }
