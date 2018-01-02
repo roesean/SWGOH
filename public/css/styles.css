@@ -759,11 +759,11 @@ h1.h1 {
 @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-devicepixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
   .navbar-brand {
     background: transparent url('../assets/theOutpost-icon.png') 15px no-repeat;
-    background-size: 265px 35px;
+    background-size: 260px 35px;
   }
   .navbar-brand:hover {
     background-image: url('../assets/theOutpost-icon.png');
-    background-size: 265px 35px;
+    background-size: 260px 35px;
   }
 }
 
