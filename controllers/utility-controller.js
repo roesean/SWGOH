@@ -18,7 +18,7 @@ function characterUrlList(req, res) {
       var characterList = $('.char-portrait-full-link')
       var urlNames = []
 
-      for(var i = 0; i < characterList.length; i++){
+      for (var i = 0; i < characterList.length; i++) {
         var link = characterList[i].attribs.href.split("/")
         urlNames.push(new CharScrape(link[4], link[5]));
       }
@@ -38,17 +38,21 @@ function characterMaster(req, res) {
     characterParser(characterUrlJson[i].url);
   }
 
-  setTimeout(function() {
-    var charactersDoc = JSON.stringify(characters);
-    fs.writeFile("./static/characterMaster.json", charactersDoc, 'utf8');
-  }, 7000)
+  setTimeout(function () {
+  var charactersDoc = JSON.stringify(characters, null, 4);
+  fs.writeFile("./static/characterMaster.json", charactersDoc, 'utf8', function (error) {
+    if (error) {
+      console.log(err);
+    }
+  });
+  }, 10000)
 }
 
 // Parse out one character at a time
 function characterParser(charName) {
   axios.get('https://swgoh.gg/characters/' + charName)
-    .then(function(response) {
-      const $ = cheerio.load(response.data)
+    .then(function (response) {
+      var $ = cheerio.load(response.data)
 
       // SETUP
       var primary = $('.content-container-primary-aside .media-body:eq(0) .pull-right')
@@ -66,37 +70,37 @@ function characterParser(charName) {
       }
 
       // BASE
-      const name$ = $('.content-container-aside .panel-title a').text()
-      const urlName$ = $('.content-container-aside .panel-title a').attr('href').substr(11)
-      const imgUrl$ = $(".panel-profile-img").attr('src')
-      const description$ = $('.content-container-aside .panel-body p').text();
+      var name$ = $('.content-container-aside .panel-title a').text()
+      var urlName$ = $('.content-container-aside .panel-title a').attr('href').substr(11)
+      var imgUrl$ = $(".panel-profile-img").attr('src')
+      var description$ = $('.content-container-aside .panel-body p').text();
 
       // PRIMARY
-      const strengthMod$ = primaryMods[0];
-      const agilityMod$ = primaryMods[1];
-      const intelligenceMod$ = primaryMods[2];
-      const power$ = parseInt($(primary[0]).text());
-      const strength$ = parseInt($(primary[1]).text());
-      const agility$ = parseInt($(primary[2]).text());
-      const intelligence$ = parseInt($(primary[3]).text());
+      var strengthMod$ = primaryMods[0];
+      var agilityMod$ = primaryMods[1];
+      var intelligenceMod$ = primaryMods[2];
+      var power$ = parseInt($(primary[0]).text());
+      var strength$ = parseInt($(primary[1]).text());
+      var agility$ = parseInt($(primary[2]).text());
+      var intelligence$ = parseInt($(primary[3]).text());
 
       // OFFENSIVE
-      const speed$ = parseInt($(offensive[0]).text());
-      const physicalDamage$ = parseInt($(offensive[1]).text());
-      const physicalCriticalRating$ = parseInt($(offensive[2]).text());
-      const specialDamage$ = parseInt($(offensive[3]).text());
-      const specialCriticalDamage$ = parseInt($(offensive[4]).text());
-      const armorPenetration$ = parseInt($(offensive[5]).text());
-      const resistancePenetration$ = parseInt($(offensive[6]).text());
-      const potency$ = parseInt($(offensive[7]).text());
+      var speed$ = parseInt($(offensive[0]).text());
+      var physicalDamage$ = parseInt($(offensive[1]).text());
+      var physicalCriticalRating$ = parseInt($(offensive[2]).text());
+      var specialDamage$ = parseInt($(offensive[3]).text());
+      var specialCriticalDamage$ = parseInt($(offensive[4]).text());
+      var armorPenetration$ = parseInt($(offensive[5]).text());
+      var resistancePenetration$ = parseInt($(offensive[6]).text());
+      var potency$ = parseInt($(offensive[7]).text());
 
       // DEFENSIVE
-      const health$ = parseInt($(defensive[0]).text());
-      const armor$ = parseInt($(defensive[1]).text());
-      const resistance$ = parseInt($(defensive[2]).text());
-      const tenacity$ = parseInt($(defensive[3]).text());
-      const healthSteal$ = parseInt($(defensive[4]).text());
-      const protection$ = parseInt($(defensive[5]).text().replace(",", ""));
+      var health$ = parseInt($(defensive[0]).text());
+      var armor$ = parseInt($(defensive[1]).text());
+      var resistance$ = parseInt($(defensive[2]).text());
+      var tenacity$ = parseInt($(defensive[3]).text());
+      var healthSteal$ = parseInt($(defensive[4]).text());
+      var protection$ = parseInt($(defensive[5]).text().replace(",", ""));
 
       var toon = new Character(
         name$,
@@ -117,7 +121,7 @@ function characterParser(charName) {
       var abilityImgUrl = $("img.char-ability-img")
 
       for (var i = 0; i < abilities.length; i++) {
-        if($(abilityCoolDown[i]).children().length == 0) {
+        if ($(abilityCoolDown[i]).children().length == 0) {
           var coolDown$ = 0;
         }
         else {
@@ -139,10 +143,23 @@ function characterParser(charName) {
       for (var i = 0; i < abilityClasses.length; i++) {
         toon.abilityClasses.push($(abilityClasses[i]).text());
       };
-
-      characters.push(toon);
+      axios.get('https://swgoh.gg/characters/' + charName + '/gear')
+        .then(function (response) {
+          var hotdog = cheerio.load(response.data);
+          // Get the gear
+          hotdog('.media.list-group-item.p-0.character').each(function (i) {
+            const thisGear = $(this).find('a').attr('title');
+            const gearLvl = 'Gear ' + (Math.floor(i / 6) + 1).toString();
+            if (toon.gearMaster[gearLvl]) {
+              toon.gearMaster[gearLvl].push(thisGear);
+            } else {
+              toon.gearMaster[gearLvl] = [thisGear];
+            }
+          });
+          characters.push(toon);
+        })
     })
-    .catch(function(error) {
+    .catch(function (error) {
       console.log("=====================");
       console.log("        ERROR        ");
       console.log("=====================");

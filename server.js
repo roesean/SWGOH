@@ -17,7 +17,7 @@ app.use(compression());
 require('dotenv').load();
 
 // connect to MongoDB with mongoose
-require('./config/database');
+// require('./config/database');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
