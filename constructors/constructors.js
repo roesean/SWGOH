@@ -106,8 +106,34 @@ var Ship = function() {
 }
 
 // Profile
-var Profile = function() {
-
+var Profile = function(allyCode, arenaBattlesWon, arenaRank, characters, characters6, characters7, charactersGalacticPower, collectionScore, galacticPower, galacticWarBattlesWon, gearIX, gearVIII, gearX, gearXI, gearXII, guild, guildCurrencyEarned, guildUrl, joined, level, pVEBattlesWon, pVEHardBattlesWon, raidsWon, shipBattlesWon, shipsGalacticPower, userId, username) {
+  this.allyCode = allyCode;
+  this.arenaBattlesWon = arenaBattlesWon;
+  this.arenaRank = arenaRank;
+  this.characters = characters;
+  this.characters6 = characters6;
+  this.characters7 = characters7;
+  this.charactersGalacticPower = charactersGalacticPower;
+  this.collectionScore = collectionScore;
+  this.galacticPower = galacticPower;
+  this.galacticWarBattlesWon = galacticWarBattlesWon;
+  this.gearIX = gearIX;
+  this.gearVIII = gearVIII;
+  this.gearX = gearX;
+  this.gearXI = gearXI;
+  this.gearXII = gearXII;
+  this.guild = guild;
+  this.guildCurrencyEarned = guildCurrencyEarned;
+  this.guildUrl = guildUrl;
+  this.joined = joined;
+  this.level = level;
+  this.pVEBattlesWon = pVEBattlesWon;
+  this.pVEHardBattlesWon = pVEHardBattlesWon;
+  this.raidsWon = raidsWon;
+  this.shipBattlesWon = shipBattlesWon;
+  this.shipsGalacticPower = shipsGalacticPower;
+  this.userId = userId;
+  this.username = username;
 }
 
 module.exports = {

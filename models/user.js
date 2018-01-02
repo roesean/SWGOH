@@ -8,9 +8,7 @@ var userSchema = new Schema({
     trim: true
   },
   characters: [],
-  ships: [],
-  profile: [],
-  guild: []
+  profile: []
 },
 {
   timestamps: true

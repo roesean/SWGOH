@@ -156,8 +156,9 @@ body {
 }
 
 .navbar-default {
-  border-color: white;
+  border-color: transparent;
   background-color: #ececec;
+  border-radius: 0;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -173,7 +174,6 @@ body {
 }
 
 /* SWGOH */
-
 .mfp-bg {
   top: 0;
   left: 0;
@@ -748,22 +748,22 @@ h1.h1 {
 
 .navbar-brand {
   padding: 0 15px;
-  width: 170px;
-  background: transparent url('../assets/swgoh-icon.png') 15px no-repeat;
+  width: 300px;
+  background: transparent url('../assets/theOutpost-icon.png') 15px no-repeat;
 }
 
 .navbar-brand:hover {
-  background-image: url('../assets/swgoh-icon.png')
+  background-image: url('../assets/theOutpost-icon.png')
 }
 
 @media only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-devicepixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx) {
   .navbar-brand {
-    background: transparent url('../assets/swgoh-icon.png') 15px no-repeat;
-    background-size: 150px 35px;
+    background: transparent url('../assets/theOutpost-icon.png') 15px no-repeat;
+    background-size: 260px 35px;
   }
   .navbar-brand:hover {
-    background-image: url('../assets/swgoh-icon.png');
-    background-size: 150px 35px;
+    background-image: url('../assets/theOutpost-icon.png');
+    background-size: 260px 35px;
   }
 }
 
