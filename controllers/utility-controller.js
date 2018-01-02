@@ -3,7 +3,7 @@ const fs = require('fs');
 const { Character, CharacterPrimary, CharacterGeneral, CharacterOffense, CharacterDefense, CharacterSkill, CharacterGear, CharScrape, Mod, ModStat, Ship, User } = require('../constructors/constructors')
 const cheerioAdv = require('cheerio-advanced-selectors')
 const cheerio = cheerioAdv.wrap(require('cheerio'))
-const characterUrlJson = require("../static/characterUrls.json")
+const characterUrlJson = require('../static/characterUrls.json')
 // const shipUrls = require('../static/shipUrls.json')
 
 var characters = []
@@ -18,8 +18,8 @@ function characterUrlList(req, res) {
       var characterList = $('.char-portrait-full-link')
       var urlNames = []
 
-      for (var i = 0; i < characterList.length; i++) {
-        var link = characterList[i].attribs.href.split("/")
+      for(var i = 0; i < characterList.length; i++){
+        var link = characterList[i].attribs.href.split('/')
         urlNames.push(new CharScrape(link[4], link[5]));
       }
 
@@ -51,7 +51,7 @@ function characterMaster(req, res) {
 // Parse out one character at a time
 function characterParser(charName) {
   axios.get('https://swgoh.gg/characters/' + charName)
-    .then(function (response) {
+    .then(function(response) {
       var $ = cheerio.load(response.data)
 
       // SETUP
@@ -115,10 +115,10 @@ function characterParser(charName) {
       )
 
       // ABILITIES
-      var abilityName = abilities.children('div.media-heading').children("h5");
+      var abilityName = abilities.children('div.media-heading').children('h5');
       var abilityDescription = abilities.children('p:not([class])')
-      var abilityCoolDown = abilities.children('div.media-heading').children("h5")
-      var abilityImgUrl = $("img.char-ability-img")
+      var abilityCoolDown = abilities.children('div.media-heading').children('h5')
+      var abilityImgUrl = $('img.char-ability-img')
 
       for (var i = 0; i < abilities.length; i++) {
         if ($(abilityCoolDown[i]).children().length == 0) {
@@ -159,10 +159,10 @@ function characterParser(charName) {
           characters.push(toon);
         })
     })
-    .catch(function (error) {
-      console.log("=====================");
-      console.log("        ERROR        ");
-      console.log("=====================");
+    .catch(function(error) {
+      console.log('=====================');
+      console.log('        ERROR        ');
+      console.log('=====================');
       console.log(error);
     })
 }

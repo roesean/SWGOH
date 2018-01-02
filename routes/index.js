@@ -3,6 +3,7 @@ var router = express.Router();
 
 var indexController = require("../controllers/index-controller.js")
 
+//http://localhost:3000/
 router.get('/profile', indexController.getProfile);
 router.get('/hero', indexController.getHeroCollection);
 router.get('/ship', indexController.getHeroCollection);

@@ -1,6 +1,6 @@
-const swgoh = require("swgoh").swgoh
+const swgoh = require('swgoh').swgoh
 
-// const username= "blasmorian";
+// const username= 'blasmorian';
 // swgoh.profile(username)
 //   .then(function (response) {
 //     console.log(response);
@@ -31,7 +31,7 @@ function getProfile(req, res) {
 
   swgoh.profile(username)
     .then(function(response) {
-      console.log("PROFILE SWGOH RESPONSE COMPLETE");
+      console.log('PROFILE SWGOH RESPONSE COMPLETE');
       res.json(response)
     })
 }
@@ -41,7 +41,7 @@ function getHeroCollection(req, res) {
 
   swgoh.collection(username)
   .then(function(response) {
-    console.log("COLLECTION SWGOH RESPONSE COMPLETE ");
+    console.log('COLLECTION SWGOH RESPONSE COMPLETE ');
     console.log(response);
     res.json(response)
   })
@@ -52,7 +52,6 @@ function getShipCollection(req, res) {
 
   swgoh.ship(username)
     .then(function(response) {
-      console.log("SHIP SWGOH RESPONSE COMPLETE ");
       console.log(response);
       res.json(response)
     })
@@ -74,9 +73,4 @@ function getGuild(req, res) {
 
 }
 
-module.exports = {
-  getProfile: getProfile,
-  getHeroCollection: getHeroCollection,
-  getShipCollection: getShipCollection,
-  getGuild: getGuild
-}
+module.exports = { getProfile, getHeroCollection, getShipCollection, getGuild }
