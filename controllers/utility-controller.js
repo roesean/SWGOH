@@ -145,9 +145,9 @@ function characterParser(charName) {
       };
       axios.get('https://swgoh.gg/characters/' + charName + '/gear')
         .then(function (response) {
-          var hotdog = cheerio.load(response.data);
+          var $ = cheerio.load(response.data);
           // Get the gear
-          hotdog('.media.list-group-item.p-0.character').each(function (i) {
+          $('.media.list-group-item.p-0.character').each(function (i) {
             const thisGear = $(this).find('a').attr('title');
             const gearLvl = 'Gear ' + (Math.floor(i / 6) + 1).toString();
             if (toon.gearMaster[gearLvl]) {
