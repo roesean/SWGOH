@@ -14,6 +14,7 @@ var Character = function(name, urlName, imgUrl, description, gearLevel, primary,
   this.skills = [];
   this.gearNeeded = [];
   this.gearEquipped = [];
+  this.gearMaster = {};
   this.mods = [];
 }
 

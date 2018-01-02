@@ -38,11 +38,14 @@ function characterMaster(req, res) {
     characterParser(characterUrlJson[i].url);
   }
 
-  setTimeout(function() {
-    var charactersDoc = JSON.stringify(characters);
-    fs.writeFile('./static/characterMaster.json', charactersDoc, 'utf8');
-  }, 7000)
-
+  setTimeout(function () {
+  var charactersDoc = JSON.stringify(characters, null, 4);
+  fs.writeFile("./static/characterMaster.json", charactersDoc, 'utf8', function (error) {
+    if (error) {
+      console.log(err);
+    }
+  });
+  }, 10000)
 }
 
 // Parse out one character at a time
@@ -118,7 +121,7 @@ function characterParser(charName) {
       var abilityImgUrl = $('img.char-ability-img')
 
       for (var i = 0; i < abilities.length; i++) {
-        if($(abilityCoolDown[i]).children().length == 0) {
+        if ($(abilityCoolDown[i]).children().length == 0) {
           var coolDown$ = 0;
         }
         else {
@@ -140,8 +143,21 @@ function characterParser(charName) {
       for (var i = 0; i < abilityClasses.length; i++) {
         toon.abilityClasses.push($(abilityClasses[i]).text());
       };
-
-      characters.push(toon);
+      axios.get('https://swgoh.gg/characters/' + charName + '/gear')
+        .then(function (response) {
+          var $ = cheerio.load(response.data);
+          // Get the gear
+          $('.media.list-group-item.p-0.character').each(function (i) {
+            const thisGear = $(this).find('a').attr('title');
+            const gearLvl = 'Gear ' + (Math.floor(i / 6) + 1).toString();
+            if (toon.gearMaster[gearLvl]) {
+              toon.gearMaster[gearLvl].push(thisGear);
+            } else {
+              toon.gearMaster[gearLvl] = [thisGear];
+            }
+          });
+          characters.push(toon);
+        })
     })
     .catch(function(error) {
       console.log('=====================');
